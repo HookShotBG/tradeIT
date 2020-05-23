@@ -10,7 +10,7 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idUser;
-	
+
 	private String vorname;
 	private String nachname;
 	private String identitaetskartennr;
@@ -19,12 +19,14 @@ public class User {
 	//do cardinality
 	private String idAdresse;
 	//do cardinality
-	private String Zahlungsinformation;
+	private String zahlungsinformation;
 
 	@OneToMany
 	private List<Aktienhandel> aktienhandel;
 
-	public User(){}
+	public User() {
+	}
+
 
 	public User(String vorname, String nachname, String identitaetskartennr, int guthaben, Date geburtsdatum, String idAdresse, String zahlungsinformation, List<Aktienhandel> aktienhandel) {
 		this.vorname = vorname;
@@ -33,7 +35,7 @@ public class User {
 		this.guthaben = guthaben;
 		this.geburtsdatum = geburtsdatum;
 		this.idAdresse = idAdresse;
-		Zahlungsinformation = zahlungsinformation;
+		this.zahlungsinformation = zahlungsinformation;
 		this.aktienhandel = aktienhandel;
 	}
 
@@ -81,18 +83,18 @@ public class User {
 	}
 
 	public String getZahlungsinformation() {
-		return Zahlungsinformation;
+		return zahlungsinformation;
 	}
 
 	public void setZahlungsinformation(String zahlungsinformation) {
-		Zahlungsinformation = zahlungsinformation;
+		zahlungsinformation = zahlungsinformation;
 	}
 
 	public List<Aktienhandel> getAktienhandel() {
 		return aktienhandel;
 	}
 
-	public void setAktienhandel(Vector<Aktienhandel> aktienhandel) {
+	public void setAktienhandel(List<Aktienhandel> aktienhandel) {
 		this.aktienhandel = aktienhandel;
 	}
 }
