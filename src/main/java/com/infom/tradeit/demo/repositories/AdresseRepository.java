@@ -1,15 +1,15 @@
-package repositories;
+package com.infom.tradeit.demo.repositories;
 
 import java.util.List;
 import java.util.Optional;
 
-import entities.Adresse;
+import com.infom.tradeit.demo.entities.Adresse;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AdresseRepository extends JpaRepository<Adresse, Long> {
 
-	List<Adresse> findAllByOrderByName();
+	List<Adresse> findAllByOrderByOrt();
 
-	Optional<Adresse> findByName(String ort);
+	//Optional<Adresse> findByName(String ort);
 
 }

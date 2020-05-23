@@ -1,9 +1,9 @@
-package repositories;
+package com.infom.tradeit.demo.repositories;
 
 import java.util.List;
 import java.util.Optional;
 
-import entities.Bank;
+import com.infom.tradeit.demo.entities.Bank;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 

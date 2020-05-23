@@ -1,29 +1,27 @@
-package entities;
+package com.infom.tradeit.demo.entities;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Kreditkartenanbieter {
+public class Bank {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idKreditkartenAnbieter;
+	private Long idBank;
 	
 	private String name;
 	
-	//do cardinality
+	// do cardinality
 	private Long idCountry;
-	
-	//do cardinality
-	private Long idBanke;
 
-	public Long getIdKreditkartenAnbieter() {
-		return idKreditkartenAnbieter;
+	public Long getIdBank() {
+		return idBank;
 	}
 
-	public void setIdKreditkartenAnbieter(Long idKreditkartenAnbieter) {
-		this.idKreditkartenAnbieter = idKreditkartenAnbieter;
+	public void setIdBank(Long idBank) {
+		this.idBank = idBank;
 	}
 
 	public String getName() {
@@ -42,13 +40,5 @@ public class Kreditkartenanbieter {
 		this.idCountry = idCountry;
 	}
 
-	public Long getIdBanke() {
-		return idBanke;
-	}
-
-	public void setIdBanke(Long idBanke) {
-		this.idBanke = idBanke;
-	}
-	
 	
 }

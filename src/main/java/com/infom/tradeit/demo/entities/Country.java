@@ -1,36 +1,16 @@
-package entities;
-
+package com.infom.tradeit.demo.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Bank {
+public class Country {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idBank;
-	
-	private String name;
-	
-	// do cardinality
 	private Long idCountry;
-
-	public Long getIdBank() {
-		return idBank;
-	}
-
-	public void setIdBank(Long idBank) {
-		this.idBank = idBank;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
+	
+	private String countryName;
 
 	public Long getIdCountry() {
 		return idCountry;
@@ -40,5 +20,13 @@ public class Bank {
 		this.idCountry = idCountry;
 	}
 
+	public String getCountryName() {
+		return countryName;
+	}
+
+	public void setCountryName(String countryName) {
+		this.countryName = countryName;
+	}
+	
 	
 }

@@ -1,4 +1,4 @@
-package entities;
+package com.infom.tradeit.demo.entities;
 import java.util.Date;
 
 import javax.persistence.Entity;

@@ -1,28 +1,29 @@
-package entities;
+package com.infom.tradeit.demo.entities;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
-public class Boersenplatz {
+public class Kreditkartenanbieter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idBoersenplatz;
+	private Long idKreditkartenAnbieter;
 	
 	private String name;
-	private String kuerzel;
 	
 	//do cardinality
 	private Long idCountry;
+	
+	//do cardinality
+	private Long idBanke;
 
-	public Long getIdBoersenplatz() {
-		return idBoersenplatz;
+	public Long getIdKreditkartenAnbieter() {
+		return idKreditkartenAnbieter;
 	}
 
-	public void setIdBoersenplatz(Long idBoersenplatz) {
-		this.idBoersenplatz = idBoersenplatz;
+	public void setIdKreditkartenAnbieter(Long idKreditkartenAnbieter) {
+		this.idKreditkartenAnbieter = idKreditkartenAnbieter;
 	}
 
 	public String getName() {
@@ -33,20 +34,20 @@ public class Boersenplatz {
 		this.name = name;
 	}
 
-	public String getKuerzel() {
-		return kuerzel;
-	}
-
-	public void setKuerzel(String kuerzel) {
-		this.kuerzel = kuerzel;
-	}
-
 	public Long getIdCountry() {
 		return idCountry;
 	}
 
 	public void setIdCountry(Long idCountry) {
 		this.idCountry = idCountry;
+	}
+
+	public Long getIdBanke() {
+		return idBanke;
+	}
+
+	public void setIdBanke(Long idBanke) {
+		this.idBanke = idBanke;
 	}
 	
 	

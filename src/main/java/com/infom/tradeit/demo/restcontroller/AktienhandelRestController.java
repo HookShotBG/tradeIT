@@ -1,36 +1,37 @@
-package restcontroller;
+package com.infom.tradeit.demo.restcontroller;
 
 import java.util.List;
 
-import entities.Titel;
+import com.infom.tradeit.demo.entities.Aktienhandel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import repositories.TitelRepository;
 
+
+import com.infom.tradeit.demo.repositories.AktienhandelRepository;
 
 /**
  * 
  * REST-Controller für die Ressource Titel
  * 
  */
+
 @RestController
-public class TitelRestController {
+public class AktienhandelRestController {
 	@Autowired
-	private TitelRepository titelRepository;
+	private AktienhandelRepository aktienRepository;
 
 	@RequestMapping(value = "/markets/stocks", method = RequestMethod.GET)
-
-	public ResponseEntity<List<Titel>> getTitels() {
+	public ResponseEntity<List<Aktienhandel>> getAktien() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
-		List<Titel> titel = titelRepository.findAllByOrderByName();
+		List<Aktienhandel> aktien = aktienRepository.findAllByOrderByIdTitel();
 		// Wenn die Liste Einträge enthält...
-		if (titel != null && !titel.isEmpty()) {
+		if (aktien != null && !aktien.isEmpty()) {
 			// ... dann diese als Body zurückgeben
-			return new ResponseEntity(titel, HttpStatus.OK);
+			return new ResponseEntity(aktien, HttpStatus.OK);
 		} else {
 			// ... ansonsten ResourceNotFoundException (404)
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
@@ -38,5 +39,6 @@ public class TitelRestController {
 		}
 
 	}
+	
 
 }
