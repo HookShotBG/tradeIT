@@ -20,7 +20,6 @@ public class UserRestController {
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public ResponseEntity<List<User>> getUsers() {
         // Alle Karten aus dem Repository laden und der cards-Variable zuweisen
-        System.out.println("penisman");
         List<User> users = userRepository.findAll();
         // Wenn die Liste Einträge enthält...
         if (users != null && !users.isEmpty()) {

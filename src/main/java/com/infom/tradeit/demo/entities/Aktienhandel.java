@@ -2,10 +2,7 @@ package com.infom.tradeit.demo.entities;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Aktienhandel {
@@ -19,13 +16,27 @@ public class Aktienhandel {
 	private Date datum;
 	private int stop_loss;
 	private int take_profit;
-	
-	//do cardinality
-	private Long idUser;
-	//do cardinality
-	private Long idTitel;
 
-	
+	//foreignkeys
+	@ManyToOne
+	private Titel titel;
+
+	@ManyToOne
+	private User user;
+
+	public Aktienhandel(){}
+
+	public Aktienhandel(Long units, int invested, int transaktionskosten, Date datum, int stop_loss, int take_profit, Titel titel, User user) {
+		this.units = units;
+		this.invested = invested;
+		this.transaktionskosten = transaktionskosten;
+		this.datum = datum;
+		this.stop_loss = stop_loss;
+		this.take_profit = take_profit;
+		this.titel = titel;
+		this.user = user;
+	}
+
 	public Long getIdAktienhandel() {
 		return idAktienhandel;
 	}
@@ -82,23 +93,20 @@ public class Aktienhandel {
 		this.take_profit = take_profit;
 	}
 
-	public Long getIdUser() {
-		return idUser;
+
+	public Titel getTitel() {
+		return titel;
 	}
 
-	public void setIdUser(Long idUser) {
-		this.idUser = idUser;
+	public void setTitel(Titel titel) {
+		this.titel = titel;
 	}
 
-	public Long getIdTitel() {
-		return idTitel;
+	public User getUser() {
+		return user;
 	}
 
-	public void setIdTitel(Long idTitel) {
-		this.idTitel = idTitel;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-	
-	
-	
 }

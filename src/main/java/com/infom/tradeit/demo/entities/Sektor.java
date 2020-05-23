@@ -12,6 +12,12 @@ public class Sektor {
 	
 	private String industriegebiet;
 
+	public Sektor(){}
+
+	public Sektor(String industriegebiet) {
+		this.industriegebiet = industriegebiet;
+	}
+
 	public Long getIdSektor() {
 		return idSektor;
 	}

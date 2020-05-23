@@ -12,9 +12,15 @@ public class Boersenplatz {
 	
 	private String name;
 	private String kuerzel;
-	
-	//do cardinality
-	private Long idCountry;
+	private String idCountry;
+
+	public Boersenplatz(){}
+
+	public Boersenplatz(String name, String kuerzel, String idCountry) {
+		this.name = name;
+		this.kuerzel = kuerzel;
+		this.idCountry = idCountry;
+	}
 
 	public Long getIdBoersenplatz() {
 		return idBoersenplatz;
@@ -40,11 +46,11 @@ public class Boersenplatz {
 		this.kuerzel = kuerzel;
 	}
 
-	public Long getIdCountry() {
+	public String getIdCountry() {
 		return idCountry;
 	}
 
-	public void setIdCountry(Long idCountry) {
+	public void setIdCountry(String idCountry) {
 		this.idCountry = idCountry;
 	}
 	

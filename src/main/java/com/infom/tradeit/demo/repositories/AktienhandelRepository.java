@@ -10,7 +10,7 @@ public interface AktienhandelRepository extends JpaRepository<Aktienhandel, Long
 
 	
 	//NEED HELP HERE?
-	List<Aktienhandel> findAllByOrderByIdTitel();
+	List<Aktienhandel> findAllByOrderByInvested();
 
 	//Optional<Aktienhandel> findByName(String name);
 

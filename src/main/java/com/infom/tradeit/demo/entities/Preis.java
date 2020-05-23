@@ -1,10 +1,7 @@
 package com.infom.tradeit.demo.entities;
 import java.util.Date;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Preis {
@@ -17,7 +14,17 @@ public class Preis {
 	private Date valid_until;
 	
 	//do cardinality
-	private Long idTitel;
+	@ManyToOne
+	private Titel titel;
+
+	public Preis(){}
+
+	public Preis(int preis, Date valid_from, Date valid_until, Titel titel) {
+		this.preis = preis;
+		this.valid_from = valid_from;
+		this.valid_until = valid_until;
+		this.titel = titel;
+	}
 
 	public Long getIdPreis() {
 		return idPreis;
@@ -51,13 +58,11 @@ public class Preis {
 		this.valid_until = valid_until;
 	}
 
-	public Long getIdTitel() {
-		return idTitel;
+	public Titel getTitel() {
+		return titel;
 	}
 
-	public void setIdTitel(Long idTitel) {
-		this.idTitel = idTitel;
+	public void setTitel(Titel titel) {
+		this.titel = titel;
 	}
-	
-	
 }

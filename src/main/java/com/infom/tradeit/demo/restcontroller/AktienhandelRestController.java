@@ -27,7 +27,7 @@ public class AktienhandelRestController {
 	@RequestMapping(value = "/markets/stocks", method = RequestMethod.GET)
 	public ResponseEntity<List<Aktienhandel>> getAktien() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
-		List<Aktienhandel> aktien = aktienRepository.findAllByOrderByIdTitel();
+		List<Aktienhandel> aktien = aktienRepository.findAll();
 		// Wenn die Liste Einträge enthält...
 		if (aktien != null && !aktien.isEmpty()) {
 			// ... dann diese als Body zurückgeben

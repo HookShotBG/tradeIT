@@ -1,10 +1,9 @@
 package com.infom.tradeit.demo.entities;
 import java.util.Date;
+import java.util.List;
+import java.util.Vector;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class User {
@@ -17,11 +16,27 @@ public class User {
 	private String identitaetskartennr;
 	private int guthaben;
 	private Date geburtsdatum;
-	
 	//do cardinality
-	private Long idAdresse;
+	private String idAdresse;
 	//do cardinality
-	private Long idZahlungsinformation;
+	private String Zahlungsinformation;
+
+	@OneToMany
+	private List<Aktienhandel> aktienhandel;
+
+	public User(){}
+
+	public User(String vorname, String nachname, String identitaetskartennr, int guthaben, Date geburtsdatum, String idAdresse, String zahlungsinformation, List<Aktienhandel> aktienhandel) {
+		this.vorname = vorname;
+		this.nachname = nachname;
+		this.identitaetskartennr = identitaetskartennr;
+		this.guthaben = guthaben;
+		this.geburtsdatum = geburtsdatum;
+		this.idAdresse = idAdresse;
+		Zahlungsinformation = zahlungsinformation;
+		this.aktienhandel = aktienhandel;
+	}
+
 	public Long getIdUser() {
 		return idUser;
 	}
@@ -58,18 +73,26 @@ public class User {
 	public void setGeburtsdatum(Date geburtsdatum) {
 		this.geburtsdatum = geburtsdatum;
 	}
-	public Long getIdAdresse() {
+	public String getIdAdresse() {
 		return idAdresse;
 	}
-	public void setIdAdresse(Long idAdresse) {
+	public void setIdAdresse(String idAdresse) {
 		this.idAdresse = idAdresse;
 	}
-	public Long getIdZahlungsinformation() {
-		return idZahlungsinformation;
+
+	public String getZahlungsinformation() {
+		return Zahlungsinformation;
 	}
-	public void setIdZahlungsinformation(Long idZahlungsinformation) {
-		this.idZahlungsinformation = idZahlungsinformation;
+
+	public void setZahlungsinformation(String zahlungsinformation) {
+		Zahlungsinformation = zahlungsinformation;
 	}
-	
-	
+
+	public List<Aktienhandel> getAktienhandel() {
+		return aktienhandel;
+	}
+
+	public void setAktienhandel(Vector<Aktienhandel> aktienhandel) {
+		this.aktienhandel = aktienhandel;
+	}
 }

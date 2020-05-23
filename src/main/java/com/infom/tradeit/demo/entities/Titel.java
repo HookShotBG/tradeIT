@@ -1,9 +1,7 @@
 package com.infom.tradeit.demo.entities;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Titel {
@@ -16,14 +14,36 @@ public class Titel {
 	private String isin;
 	private String symbol;
 	private String currency;
-	
-	//do cardinality
-	private Long idBoersenplatz;
-	//do cardinality
-	private Long idArt;
-	//do cardinality
-	private Long idSektor;
-	
+
+	//foreign keys
+	@ManyToOne
+	private Boersenplatz boersenplatz;
+
+	@ManyToOne
+	private Sektor sektor;
+
+	@ManyToOne
+	private Art art;
+
+	@OneToMany
+	private List<Preis> preis;
+
+	public Titel(){
+
+	}
+
+	public Titel(String name, int valor, String isin, String symbol, String currency, Boersenplatz boersenplatz, Sektor sektor, Art art, List<Preis> preis) {
+		this.name = name;
+		this.valor = valor;
+		this.isin = isin;
+		this.symbol = symbol;
+		this.currency = currency;
+		this.boersenplatz = boersenplatz;
+		this.sektor = sektor;
+		this.art = art;
+		this.preis = preis;
+	}
+
 	public Long getIdTitel() {
 		return idTitel;
 	}
@@ -60,25 +80,36 @@ public class Titel {
 	public void setCurrency(String currency) {
 		this.currency = currency;
 	}
-	public Long getIdBoersenplatz() {
-		return idBoersenplatz;
-	}
-	public void setIdBoersenplatz(Long idBoersenplatz) {
-		this.idBoersenplatz = idBoersenplatz;
-	}
-	public Long getIdArt() {
-		return idArt;
-	}
-	public void setIdArt(Long idArt) {
-		this.idArt = idArt;
-	}
-	public Long getIdSektor() {
-		return idSektor;
-	}
-	public void setIdSektor(Long idSektor) {
-		this.idSektor = idSektor;
+
+	public Boersenplatz getBoersenplatz() {
+		return boersenplatz;
 	}
 
-	
-	
+	public void setBoersenplatz(Boersenplatz boersenplatz) {
+		this.boersenplatz = boersenplatz;
+	}
+
+	public Sektor getSektor() {
+		return sektor;
+	}
+
+	public void setSektor(Sektor sektor) {
+		this.sektor = sektor;
+	}
+
+	public Art getArt() {
+		return art;
+	}
+
+	public void setArt(Art art) {
+		this.art = art;
+	}
+
+	public List<Preis> getPreis() {
+		return preis;
+	}
+
+	public void setPreis(List<Preis> preis) {
+		this.preis = preis;
+	}
 }

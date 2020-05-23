@@ -13,6 +13,14 @@ public class Art {
 	
 	private String name;
 	private String beschreibung;
+
+	public Art(){}
+
+	public Art(String name, String beschreibung) {
+		this.name = name;
+		this.beschreibung = beschreibung;
+	}
+
 	public Long getIdArt() {
 		return idArt;
 	}
