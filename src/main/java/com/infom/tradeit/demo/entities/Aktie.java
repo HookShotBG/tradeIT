@@ -1,5 +1,6 @@
 package com.infom.tradeit.demo.entities;
 
+import javax.persistence.Entity;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ import java.util.List;
  * Einzig die Aktie besitzt den ISIN -> EFT's hätte beispeilsweise ein anderes Attribut.. etc.
  *
  */
+
+@Entity
 public class Aktie extends Titel{
     private String isin;
 

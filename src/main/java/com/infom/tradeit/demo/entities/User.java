@@ -14,7 +14,7 @@ public class User {
 	private String vorname;
 	private String nachname;
 	private String identitaetskartennr;
-	private int guthaben;
+	private double guthaben;
 	private Date geburtsdatum;
 	//do cardinality
 	private String idAdresse;
@@ -63,10 +63,10 @@ public class User {
 	public void setIdentitaetskartennr(String identitaetskartennr) {
 		this.identitaetskartennr = identitaetskartennr;
 	}
-	public int getGuthaben() {
+	public double getGuthaben() {
 		return guthaben;
 	}
-	public void setGuthaben(int guthaben) {
+	public void setGuthaben(double guthaben) {
 		this.guthaben = guthaben;
 	}
 	public Date getGeburtsdatum() {

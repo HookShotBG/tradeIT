@@ -2,13 +2,9 @@ package com.infom.tradeit.demo.restcontroller;
 
 import com.infom.tradeit.demo.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.infom.tradeit.demo.repositories.UserRepository;
-import sun.plugin.JavaRunTime;
 
-import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 
 @RestController

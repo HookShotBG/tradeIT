@@ -9,21 +9,17 @@ public class Preis {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long idPreis;
 	
-	private int preis;
+	private double preis;
 	private Date valid_from;
 	private Date valid_until;
-	
-	//do cardinality
-	@ManyToOne
-	private Titel titel;
+
 
 	public Preis(){}
 
-	public Preis(int preis, Date valid_from, Date valid_until, Titel titel) {
+	public Preis(double preis, Date valid_from, Date valid_until) {
 		this.preis = preis;
 		this.valid_from = valid_from;
 		this.valid_until = valid_until;
-		this.titel = titel;
 	}
 
 	public Long getIdPreis() {
@@ -34,11 +30,11 @@ public class Preis {
 		this.idPreis = idPreis;
 	}
 
-	public int getPreis() {
+	public double getPreis() {
 		return preis;
 	}
 
-	public void setPreis(int preis) {
+	public void setPreis(double preis) {
 		this.preis = preis;
 	}
 
@@ -58,11 +54,4 @@ public class Preis {
 		this.valid_until = valid_until;
 	}
 
-	public Titel getTitel() {
-		return titel;
-	}
-
-	public void setTitel(Titel titel) {
-		this.titel = titel;
-	}
 }
