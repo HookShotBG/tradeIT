@@ -11,7 +11,6 @@ public class Titel {
 	
 	private String name;
 	private int valor;
-	private String isin;
 	private String symbol;
 	private String currency;
 
@@ -32,10 +31,9 @@ public class Titel {
 
 	}
 
-	public Titel(String name, int valor, String isin, String symbol, String currency, Boersenplatz boersenplatz, Sektor sektor, Art art, List<Preis> preis) {
+	public Titel(String name, int valor, String symbol, String currency, Boersenplatz boersenplatz, Sektor sektor, Art art, List<Preis> preis) {
 		this.name = name;
 		this.valor = valor;
-		this.isin = isin;
 		this.symbol = symbol;
 		this.currency = currency;
 		this.boersenplatz = boersenplatz;
@@ -61,12 +59,6 @@ public class Titel {
 	}
 	public void setValor(int valor) {
 		this.valor = valor;
-	}
-	public String getIsin() {
-		return isin;
-	}
-	public void setIsin(String isin) {
-		this.isin = isin;
 	}
 	public String getSymbol() {
 		return symbol;
