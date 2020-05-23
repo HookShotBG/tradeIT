@@ -24,7 +24,7 @@ public class AktienhandelRestController {
 	@Autowired
 	private AktienhandelRepository aktienRepository;
 
-	@RequestMapping(value = "/markets/stocks", method = RequestMethod.GET)
+	@RequestMapping(value = "/portfolio", method = RequestMethod.GET)
 	public ResponseEntity<List<Aktienhandel>> getAktien() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
 		List<Aktienhandel> aktien = aktienRepository.findAll();
