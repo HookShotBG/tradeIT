@@ -21,7 +21,7 @@ public class Aktienhandel {
 	@ManyToOne
 	private Titel titel;
 
-	//@ManyToOne
+	@ManyToOne
 	private User user;
 
 	public Aktienhandel(){}
