@@ -1,0 +1,59 @@
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {height: 550px}
+    
+/* Set gray background color and 100% height */
+.sidenav {
+  background-color: #f1f1f1;
+  height: 100vh;
+  width: 200px;
+}
+    
+/* On small screens, set height to 'auto' for the grid */
+@media screen and (max-width: 767px) {
+  .row.content {height: auto;} 
+}
+
+.pProfit {color: green;}
+.pLoss {color: red;}
+
+.blockButton{
+    display: block;
+    width: 100%;
+    border: none;
+    background-color: lightgray;
+    padding: 14px 28px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.divBtn{
+    margin: 0 auto;
+    display: block;
+}
+
+.buyButton{
+    background-color: lightgray;
+    cursor: pointer;
+    width: 100%;
+    text-align: center;
+    border: none;
+    color:black !important;
+    padding: 5px 15px;
+}
+
+
+.sellButton{
+  background-color: darkgrey;
+  color:black !important;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  border: none;
+  padding: 5px 15px;
+}
+
+.aktimel{
+  background: #337ab7;
+  color:white;
+}
