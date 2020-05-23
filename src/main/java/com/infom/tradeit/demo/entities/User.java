@@ -21,8 +21,7 @@ public class User {
 	//do cardinality
 	private String Zahlungsinformation;
 
-	//@OneToMany
-	@ManyToOne
+	@OneToMany
 	private List<Aktienhandel> aktienhandel;
 
 	public User(){}
