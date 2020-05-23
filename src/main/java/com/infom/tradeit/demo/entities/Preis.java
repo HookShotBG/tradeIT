@@ -14,7 +14,7 @@ public class Preis {
 	private Date valid_until;
 	
 	//do cardinality
-	@ManyToOne
+	//@ManyToOne
 	private Titel titel;
 
 	public Preis(){}
