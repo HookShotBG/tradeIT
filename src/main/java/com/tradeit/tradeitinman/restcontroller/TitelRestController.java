@@ -26,7 +26,7 @@ public class TitelRestController {
 	@Autowired
     private AktienRepository aktienRepository;
 
-	@GetMapping("/stocks")
+	@GetMapping("/stocksY")
     List<Titel> getAllStocks(){
         return titelRepository.findAll();
     }
@@ -35,7 +35,7 @@ public class TitelRestController {
     List<Aktie> getAll(){
         return aktienRepository.findAll();
     }
-
+/*
 	@GetMapping("/stocky")
 	List<Aktie> generateData() {
 
@@ -74,7 +74,7 @@ public class TitelRestController {
 
 		return aktienRepository.findAll();
 	}
-
+*/
 	@RequestMapping(value = "/XXXXXX", method = RequestMethod.GET)
 	public ResponseEntity<List<Titel>> getTitels() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
