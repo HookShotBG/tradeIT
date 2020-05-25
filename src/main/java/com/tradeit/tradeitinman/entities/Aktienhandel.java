@@ -20,7 +20,7 @@ public class Aktienhandel {
 	@ManyToOne
 	private Titel titel;
 
-	@ManyToOne
+	@ManyToOne (cascade = CascadeType.ALL)
 	private User user;
 
 	public Aktienhandel(){}
