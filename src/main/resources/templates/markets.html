@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <title>Markets</title>
   <meta charset="utf-8">
@@ -10,6 +11,12 @@
 
   <link rel="stylesheet" type="text/css" href="css/main.css">
 
+  <!-- jquery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- vue js -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
 </head>
 <body>
 
@@ -102,5 +109,25 @@
       </div>
 
 </div>
+          <script>
+
+            $.ajax({
+              url: "/stockX",
+              type: "GET",
+
+              contentType: 'application/json; charset=utf-8',
+              success: function(resultData) {
+                //here is your json.
+                // process it
+                console.log(resultData)
+
+              },
+              error : function(jqXHR, textStatus, errorThrown) {
+              },
+
+              timeout: 120000,
+            });
+
+          </script>
 </body>
 </html>
