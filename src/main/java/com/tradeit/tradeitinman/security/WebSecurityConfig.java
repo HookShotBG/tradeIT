@@ -18,10 +18,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .csrf().disable().authorizeRequests()
-                .antMatchers("/xxx").hasRole("boss")
+                .antMatchers("/*").hasRole("boss")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();
+                .formLogin().permitAll();
+
     }
 
     @Override
