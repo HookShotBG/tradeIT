@@ -18,11 +18,11 @@ public class Aktie extends Titel{
 
     public Aktie(){}
 
-    public Aktie(String isin) {
-        this.isin = isin;
+    public Aktie(String isin){
+        this.isin=isin;
     }
 
-    public Aktie(String name, int valor,  String symbol, String currency, Boersenplatz boersenplatz, Sektor sektor, Art art, List<Preis> preis, String isin) {
+    public Aktie(String name, int valor, String symbol, String currency, Boersenplatz boersenplatz, Sektor sektor, Art art, List<Preis> preis, String isin) {
         super(name, valor, symbol, currency, boersenplatz, sektor, art, preis);
         this.isin = isin;
     }

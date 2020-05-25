@@ -2,7 +2,7 @@ package com.tradeit.tradeitinman.restcontroller;
 
 
 import com.tradeit.tradeitinman.entities.*;
-import com.tradeit.tradeitinman.repositories.TitelRepository;
+import com.tradeit.tradeitinman.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,22 +23,56 @@ public class TitelRestController {
 	@Autowired
 	private TitelRepository titelRepository;
 
+	@Autowired
+    private AktienRepository aktienRepository;
+
+	@GetMapping("/stocks")
+    List<Titel> getAllStocks(){
+        return titelRepository.findAll();
+    }
+
+    @GetMapping("/stockX")
+    List<Aktie> getAll(){
+        return aktienRepository.findAll();
+    }
+
 	@GetMapping("/stocky")
-	List<Titel> generateData() {
+	List<Aktie> generateData() {
+
+	    System.out.println("sadfasl");
+
 		Preis p = new Preis(100, new Date(1999093), new Date(421341234));
 		List<Preis> pl = new ArrayList<Preis>();
 		pl.add(p);
 		p = new Preis(100, new Date(421341234), new Date(512341234));
 		pl.add(p);
-		Boersenplatz b = new Boersenplatz("SIX Stock X", "SIX", "Switzerland");
+		Boersenplatz b = new Boersenplatz("Nasdaq", "NASDQ", "USA");
 		Sektor s = new Sektor("Technologie");
-		Art a = new Art("Diverses", "Penisman");
+		Art a = new Art("Technologie", "Some random things");
+        Aktie aktie = new Aktie("Microsoft", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
 
-		Aktie aktie = new Aktie("Microsoft", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
+        p = new Preis(312, new Date(1999093), new Date(421341234));
+        pl = new ArrayList<Preis>();
+        pl.add(p);
+        p = new Preis(108, new Date(421341234), new Date(512341234));
+        pl.add(p);
+
 		Aktie bktie = new Aktie("Teslik", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
-		Aktie cktie = new Aktie("ONeSW", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
 
-		return titelRepository.findAll();
+        p = new Preis(1234, new Date(1999093), new Date(421341234));
+        pl = new ArrayList<Preis>();
+        pl.add(p);
+        p = new Preis(9000, new Date(421341234), new Date(512341234));
+        pl.add(p);
+
+		Aktie cktie = new Aktie("mr fakes cookie monster shop", 1012, "MFCMS", "USD", b, s, a, pl, "XNXX");
+
+
+		aktienRepository.save(aktie);
+		aktienRepository.save(bktie);
+		aktienRepository.save(cktie);
+
+		return aktienRepository.findAll();
 	}
 
 	@RequestMapping(value = "/XXXXXX", method = RequestMethod.GET)
