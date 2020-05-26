@@ -10,20 +10,25 @@ $(document).ready(function () {
             resultSet = resultData[0];
 
 
-            console.log(resultSet.preis);
-
             var xf = [];
-            $.each(resultSet.preis, function (key, value) {
+            $.each(resultSet.preis, function(key, value){
+                var ff = new Date(value.valid_until);
                 var t = {
-                    x: new Date(value.valid_until),
-                    y: value.preis
+                    x: ff,
+                    y:value.preis,
+                    indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23"
                 };
+
+                if(key > 0){
+                    if(value.preis < resultSet.preis[key-1].preis){
+                        t.indexLabel = "loss";
+                        t.markerType = "cross";
+                        t.markerColor = "tomato";
+                    }
+                }
+
                 xf.push(t);
             });
-
-            console.log(xf);
-
-
 
             var chart = new CanvasJS.Chart("share_chartContainer", {
                 theme: "dark1",
@@ -33,11 +38,11 @@ $(document).ready(function () {
                 },
                 axisX: {
                     interval: 1,
-                    intervalType: "month",
-                    valueFormatString: "MMM"
+                    intervalType: "day",
+                    valueFormatString: "DD"
                 },
                 axisY:{
-                    title: "Price (in USD)",
+                    title: "Price (in CHF)",
                     valueFormatString: "$#0"
                 },
                 data: [{
@@ -45,16 +50,7 @@ $(document).ready(function () {
                     markerSize: 12,
                     xValueFormatString: "MMM, YYYY",
                     yValueFormatString: "$###.#",
-                    dataPoints: [
-                        { x: new Date(2016, 00, 1), y: 61, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
-                        { x: new Date(2016, 01, 1), y: 71, indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23" },
-                        { x: new Date(2016, 02, 1) , y: 55, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-                        { x: new Date(2016, 03, 1) , y: 50, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-                        { x: new Date(2016, 04, 1) , y: 65, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-                        { x: new Date(2016, 05, 1) , y: 85, indexLabel: "gain", markerType: "triangle", markerColor: "#6B8E23" },
-                        { x: new Date(2016, 06, 1) , y: 68, indexLabel: "loss", markerType: "cross", markerColor: "tomato" },
-                        { x: new Date(2016, 07, 1) , y: 28, indexLabel: "loss", markerType: "cross", markerColor: "tomato" }
-        ]
+                    dataPoints: xf
         }]
         });
             chart.render();

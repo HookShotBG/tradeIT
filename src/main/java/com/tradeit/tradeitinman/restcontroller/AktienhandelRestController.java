@@ -3,17 +3,17 @@ package com.tradeit.tradeitinman.restcontroller;
 
 import com.tradeit.tradeitinman.entities.Aktienhandel;
 import com.tradeit.tradeitinman.repositories.AktienhandelRepository;
+import com.tradeit.tradeitinman.repositories.PreisRepository;
+import com.tradeit.tradeitinman.repositories.TitelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * 
@@ -25,6 +25,12 @@ import java.util.List;
 public class AktienhandelRestController {
 	@Autowired
 	private AktienhandelRepository aktienRepository;
+
+	@Autowired
+	private TitelRepository tr;
+
+	@Autowired
+	private PreisRepository pr;
 
 	@RequestMapping(value = "/XXXXXXX", method = RequestMethod.GET)
 	public ResponseEntity<List<Aktienhandel>> getAktien() {
@@ -41,4 +47,19 @@ public class AktienhandelRestController {
 		}
 
 	}
+
+	@GetMapping("/portfolioDetails")
+	public List<Aktienhandel> getDetail(){
+		//select akh.invested, akh.datum, akh.stop_loss, akh.take_profit, t.name, p.preis from aktienhandel akh inner join  titel t on akh.titel_id_titel=t.id_titel inner join preis p on akh.datum=p.valid_from inner join titel_preis tp on tp.titel_id_titel=t.id_titel and tp.preis_id_preis=p.id_preis;
+		// 3 queries needed -> to fetch Aktienhandel infos, to fetch titel infos and preis infos
+		List<Aktienhandel> akr = aktienRepository.getDetailsfromAktienhandel();
+		return akr;
+	}
+
+	@GetMapping("/singleAktienhandel/{id}")
+	public Optional<Aktienhandel> getSingleHandel(@PathVariable(value="id") long id){
+		Optional<Aktienhandel> akh = aktienRepository.findByIdAktienhandel(id);
+		return akh;
+	}
+
 }

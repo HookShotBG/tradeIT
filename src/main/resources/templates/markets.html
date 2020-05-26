@@ -121,6 +121,13 @@
                 // process it
                 console.log(resultData)
 
+                $.each(resultData, function(key, value){
+                  $.each(value.preis, function(key, val){
+                    console.log("DATE");
+                    console.log(new Date(val.valid_until));
+                  });
+
+                });
               },
               error : function(jqXHR, textStatus, errorThrown) {
               },

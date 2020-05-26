@@ -4,28 +4,30 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-public class Titel {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTitel;
+    public class Titel {
+        @Id
+        @GeneratedValue(strategy = GenerationType.IDENTITY)
+        private Long idTitel;
 
-    private String name;
-    private int valor;
-    private String symbol;
-    private String currency;
+        private String name;
+        private int valor;
+        private String symbol;
+        private String currency;
 
-    //foreign keys
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Boersenplatz boersenplatz;
+        @OneToMany(cascade = CascadeType.ALL)
+        private List<Preis> preis;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Sektor sektor;
+        //foreign keys
+        @ManyToOne(cascade = CascadeType.ALL)
+        private Boersenplatz boersenplatz;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    private Art art;
+        @ManyToOne(cascade = CascadeType.ALL)
+        private Sektor sektor;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Preis> preis;
+        @ManyToOne(cascade = CascadeType.ALL)
+        private Art art;
+
+
 
     public Titel() {
 

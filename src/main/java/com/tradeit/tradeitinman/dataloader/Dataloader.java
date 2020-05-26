@@ -42,57 +42,177 @@ public class Dataloader {
     @GetMapping("/dataloader")
     List<Aktienhandel> dataload(){
 
+        String str="2020-03-31";
+        Date sff=Date.valueOf(str);//converting string into sql date
+
+        String str2="2020-04-01";
+        Date sff1=Date.valueOf(str);//converting string into sql date
+
+
         //hier müssten .save mehtoden rein mit @autowired
-        Preis p = new Preis(100, new Date(1999093), new Date(421341234));
+        Preis p = new Preis(100, sff, sff1);
         List<Preis> pl = new ArrayList<Preis>();
         pl.add(p);
-        p = new Preis(100, new Date(1589068800), new Date(1989068800));
+
+        str="2020-04-01";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-02";
+        sff1=Date.valueOf(str);//converting string into sql date
+
+
+        long millis=System.currentTimeMillis();
+        java.sql.Date date=new java.sql.Date(millis);
+
+        p = new Preis(100, sff, sff1);
         pl.add(p);
-        p = new Preis(100.9, new Date(1989068800), new Date(1989999800));
+        str="2020-04-02";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-03";
+        sff1=Date.valueOf(str2);//converting string into sql date
+        p = new Preis(100.9, sff,sff1);
         pl.add(p);
-        p = new Preis(89.55, new Date(1989999800), new Date(2000000000));
+        str="2020-04-03";
+        sff=Date.valueOf(str2);//converting string into sql date
+
+        str2="2020-04-04";
+        sff1=Date.valueOf(str);//converting string into sql date
+        p = new Preis(89.55, sff, sff1);
         pl.add(p);
-        p = new Preis(86.63, new Date(2000100800), new Date(2001000000));
+        str="2020-04-04";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-05";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(86.63, sff, sff1);
         pl.add(p);
-        p = new Preis(81.40, new Date(2001100800), new Date(2020040100));
+        str="2020-04-05";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-06";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(81.40, sff, sff1);
         pl.add(p);
-        p = new Preis(96.15, new Date(2020040100), new Date(2020040110));
+        str="2020-04-06";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-07";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(96.15, sff, sff1);
         pl.add(p);
-        p = new Preis(107.20, new Date(2020040120), new Date(2120040000));
+        str="2020-04-07";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-08";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(107.20, sff, sff1);
         pl.add(p);
-        p = new Preis(115.90, new Date(2120040120), new Date(2120040000));
+        str="2020-04-08";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-09";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(115.90, sff, sff1);
         pl.add(p);
-        p = new Preis(135.19, new Date(2120040120), new Date(2120042000));
+        str="2020-04-09";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-10";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(135.19, sff, sff1);
         pl.add(p);
-        p = new Preis(141, new Date(2120042001), new Date(2120052000));
+        str="2020-04-10";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-11";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(141, sff, sff1);
         pl.add(p);
-        p = new Preis(146, new Date(2120052001), new Date(2140052000));
+        str="2020-04-11";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-12";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(146, sff, sff1);
         pl.add(p);
-        p = new Preis(135.30, new Date(2140052001), new Date(2147052000));
+        str="2020-04-12";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-13";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(135.30, sff, sff1);
         pl.add(p);
-        p = new Preis(129.25, new Date(2147052001), new Date(2147452000));
+        str="2020-04-13";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-14";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(129.25, sff, sff1);
         pl.add(p);
-        p = new Preis(118.17, new Date(2147452001), new Date(2147482000));
+        str="2020-04-14";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-15";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(118.17, sff, sff1);
         pl.add(p);
-        p = new Preis(123.78, new Date(2147482001), new Date(2147483000));
+        str="2020-04-15";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-16";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(123.78, sff, sff1);
         pl.add(p);
-        p = new Preis(122.15, new Date(2147483001), new Date(2147483600));
+        str="2020-04-16";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-17";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(122.15, sff, sff1);
         pl.add(p);
-        p = new Preis(114, new Date(2147483601), new Date(2147483640));
+        str="2020-04-17";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-18";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(114, sff, sff1);
         pl.add(p);
-        p = new Preis(180, new Date(2147483641), new Date(2147483647));
+        str="2020-04-18";
+        sff=Date.valueOf(str);//converting string into sql date
+
+        str2="2020-04-19";
+        sff1=Date.valueOf(str2);//converting string into sql date
+
+        p = new Preis(180, sff, sff1);
         pl.add(p);
         Boersenplatz b = new Boersenplatz("SIX Stock X", "SIX", "Switzerland");
         Sektor s = new Sektor("Technologie");
         Art a = new Art("Verschiedenes", "Technik");
 
-        Aktie aktie = new Aktie("TradeIT", 4999, "TRIT", "CHF", b, s, a, pl, "CH5949181045");
+        Aktie aktie = new Aktie("Microsoft", 10002, "MSFT", "CHF", b, s, a, pl, "CH5949181045");
 
         akr.save(aktie);
 
         User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "Dickinson", "sadfZahl", new ArrayList<Aktienhandel>());
 
-        Aktienhandel akh = new Aktienhandel((long) 5.333, 1000, 5, new Date(100000), 25, 125, aktie, u);
+        str="2020-04-16";
+        sff=Date.valueOf(str);//converting string into sql date
+        Aktienhandel akh = new Aktienhandel((long) 5.333, 1000, 5, sff, 25, 125, aktie, u);
 
         akhr.save(akh);
 

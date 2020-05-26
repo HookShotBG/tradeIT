@@ -35,46 +35,7 @@ public class TitelRestController {
     List<Aktie> getAll(){
         return aktienRepository.findAll();
     }
-/*
-	@GetMapping("/stocky")
-	List<Aktie> generateData() {
 
-	    System.out.println("sadfasl");
-
-		Preis p = new Preis(100, new Date(1999093), new Date(421341234));
-		List<Preis> pl = new ArrayList<Preis>();
-		pl.add(p);
-		p = new Preis(100, new Date(421341234), new Date(512341234));
-		pl.add(p);
-		Boersenplatz b = new Boersenplatz("Nasdaq", "NASDQ", "USA");
-		Sektor s = new Sektor("Technologie");
-		Art a = new Art("Technologie", "Some random things");
-        Aktie aktie = new Aktie("Microsoft", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
-
-        p = new Preis(312, new Date(1999093), new Date(421341234));
-        pl = new ArrayList<Preis>();
-        pl.add(p);
-        p = new Preis(108, new Date(421341234), new Date(512341234));
-        pl.add(p);
-
-		Aktie bktie = new Aktie("Teslik", 1001, "MSFT", "CHF", b, s, a, pl, "XXX0010");
-
-        p = new Preis(1234, new Date(1999093), new Date(421341234));
-        pl = new ArrayList<Preis>();
-        pl.add(p);
-        p = new Preis(9000, new Date(421341234), new Date(512341234));
-        pl.add(p);
-
-		Aktie cktie = new Aktie("mr fakes cookie monster shop", 1012, "MFCMS", "USD", b, s, a, pl, "XNXX");
-
-
-		aktienRepository.save(aktie);
-		aktienRepository.save(bktie);
-		aktienRepository.save(cktie);
-
-		return aktienRepository.findAll();
-	}
-*/
 	@RequestMapping(value = "/XXXXXX", method = RequestMethod.GET)
 	public ResponseEntity<List<Titel>> getTitels() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
@@ -91,21 +52,43 @@ public class TitelRestController {
 
 	}
 
-	/*
-	@GetMapping("/stocks")
-	List<Titel> allTitel() {
-		return titelRepository.findAll();
-	}
-
-	@PostMapping("/stocks")
-	Titel newTitel(@RequestBody Titel newTitel) {
-		return titelRepository.save(newTitel);
-	}
-
-	// Single stock
-	@GetMapping("/stocks/{id}")
-	Titel singleTitel(@PathVariable Long id) {
+	// Single stock by id
+	@GetMapping("/stocks/id/{id}")
+	Titel singleTitelID(@PathVariable Long id) {
 		return titelRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find Titel" + id));
-	}*/
+	}
+
+	// Single stock by name
+	@GetMapping("/stocks/name/{name}")
+	List<Titel> singleTitelName(@PathVariable String name) {
+		List<Titel> t = titelRepository.findDistinctFirstByName(name);
+		if(t.isEmpty() || t.size() == 0){
+			return (List<Titel>) new RuntimeException("Could not find Titel" + name);
+		}
+		return t;
+	}
+
+	// Single stock by valor
+	@GetMapping("/stocks/valor/{valor}")
+	Titel singleTitelValor(@PathVariable int valor) {
+		return titelRepository.findByValor(valor).orElseThrow(() -> new RuntimeException("Could not find Titel " + valor));
+	}
+
+	// Single stock by sektor
+	@GetMapping("/stocks/currency")
+	List<Titel> singleTitelSektor() {
+		List<Titel> t = titelRepository.findAllByOrderByCurrencyAsc();
+		if(t.isEmpty() || t.size() == 0){
+			return (List<Titel>) new RuntimeException("Could not find Titel");
+		}
+		return t;
+	}
+
+	// Single stock by name which contains
+	@GetMapping("/stocks/contains/{contains}")
+	Titel titelwithName(@PathVariable String contains) {
+		return titelRepository.findDistinctFirstByNameContaining(contains).orElseThrow(() -> new RuntimeException("Could not find Titel " + contains));
+	}
+
 
 }
