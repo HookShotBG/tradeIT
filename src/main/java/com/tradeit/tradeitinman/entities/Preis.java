@@ -13,7 +13,6 @@ public class Preis {
 	private Date valid_from;
 	private Date valid_until;
 
-
 	public Preis(){}
 
 	public Preis(double preis, Date valid_from, Date valid_until) {
