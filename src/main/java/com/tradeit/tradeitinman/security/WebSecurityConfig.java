@@ -36,7 +36,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("ryan")
                 .password(encoder.encode("ryan"))
-                .roles("boss");
+                .roles("boss", "root");
     }
 
 }
