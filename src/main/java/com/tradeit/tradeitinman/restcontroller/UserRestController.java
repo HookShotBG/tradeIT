@@ -19,7 +19,7 @@ public class UserRestController {
         return userRepository.findAll();
     }
 
-    @PostMapping("/users1")
+    @PostMapping("/users")
     User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }

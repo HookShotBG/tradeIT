@@ -91,4 +91,5 @@ public class BoersenplatzRestController {
         br.deleteById(id);
         return br.findAll();
     }
+
 }

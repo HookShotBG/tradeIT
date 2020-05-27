@@ -21,7 +21,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/*").hasRole("boss")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll();
+                .formLogin();
     }
 
     @Override
