@@ -53,4 +53,13 @@ public class ArtRestController {
         return ar.findAll();
     }
 
+    @GetMapping("/dist/{name}")
+    public List<Art> getDist(@PathVariable("name") String dist){
+        return ar.selectDistOrderByName(dist);
+    }
+
+    @GetMapping("/name")
+    public List<Art> getDist(){
+        return ar.findAllByOrderByName();
+    }
 }

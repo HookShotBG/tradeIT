@@ -15,23 +15,23 @@ public class UserRestController {
 
 
     @GetMapping("/users")
-    List<User> all() {
+    public List<User> all() {
         return userRepository.findAll();
     }
 
     @PostMapping("/users")
-    User newUser(@RequestBody User newUser) {
+    public User newUser(@RequestBody User newUser) {
         return userRepository.save(newUser);
     }
 
-    // Single item
+    // Single user
     @GetMapping("/users/{id}")
-    User singleUser(@PathVariable Long id) {
+    public User singleUser(@PathVariable Long id) {
         return userRepository.findById(id).orElseThrow(() -> new RuntimeException("Could not find user" + id));
     }
 
     @PutMapping("/users/{id}")
-    User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
+    public User replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
         return userRepository.findById(id).map(user-> {
             user.setNachname(newUser.getNachname());
@@ -51,8 +51,38 @@ public class UserRestController {
     }
 
     @DeleteMapping("/users/{id}")
-    void deleteUser(@PathVariable Long id) {
+    public void deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
+    }
+
+    @GetMapping("/users/money")
+    public List<User> getMoney(){
+        return userRepository.findAllByOrderByGuthaben();
+    }
+
+    @GetMapping("/users/ri/{money}")
+    public List<User> getPreciousCustomers(@PathVariable double money){
+        return userRepository.findUsersWithMoreMoneyThan(money);
+    }
+
+    @GetMapping("/users/ri2/{money}")
+    public List<User> getPreciousCustomers2(@PathVariable double money){
+        return userRepository.findUsersWithSomeAttributes(money);
+    }
+
+    @GetMapping("/users/query/{id}")
+    public User getUserByIdentity(@PathVariable String id){
+        return userRepository.findUserByIdnr(id);
+    }
+
+    @GetMapping("/users/querys/{id}")
+    public List<User> getUserByIdentitys(@PathVariable String id){
+        return userRepository.findUsersWhichContainIdnr(id);
+    }
+
+    @GetMapping("/users/query/{pre}/{last}")
+    public List<User> getUserByIdentity(@PathVariable String pre, @PathVariable String last){
+        return userRepository.findUserByVorUndNachname(pre, last);
     }
 
 }

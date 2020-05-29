@@ -8,11 +8,4 @@ import java.util.List;
 
 
 public interface PreisRepository extends JpaRepository<Preis, Long> {
-
-	//NEED HELP HERE?
-	
-	List<Preis> findAllByOrderByPreis();
-
-	//Optional<Preis> findByName(String name);
-
 }

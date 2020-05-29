@@ -22,8 +22,5 @@ public interface TitelRepository extends JpaRepository<Titel, Long> {
 	Optional<Titel> findDistinctFirstByNameContaining(String contains);
 
 	Optional<Titel> findByValor(int valor);
-/*
-	@Query("SELECT t FROM Titel t, Art a WHERE t.art=a.idArt and t.name=?1")
-	public List<Titel> getTitelByNameAndCurrency(String name);
-*/
+
 }

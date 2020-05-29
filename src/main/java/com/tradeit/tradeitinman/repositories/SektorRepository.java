@@ -8,9 +8,4 @@ import java.util.List;
 
 
 public interface SektorRepository extends JpaRepository<Sektor, Long> {
-
-	List<Sektor> findAllByOrderByIndustriegebiet();
-
-	//Optional<Sektor> findByName(String industriegebiet);
-
 }

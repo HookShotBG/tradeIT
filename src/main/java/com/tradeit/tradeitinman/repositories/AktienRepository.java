@@ -9,8 +9,4 @@ import java.util.List;
 import java.util.Optional;
 
 public interface AktienRepository extends JpaRepository<Aktie, Long> {
-    List<Titel> findAllByOrderByName();
-
-    Optional<Titel> findByName(String name);
-
 }
