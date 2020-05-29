@@ -19,6 +19,11 @@ public class BoersenplatzRestController {
         return br.findAllByOrderByName();
     }
 
+    @GetMapping("/single/{id}")
+    public Optional<Boersenplatz> getBoerseById(@PathVariable long id){
+        return br.findById(id);
+    }
+
     //requestmapping needed instead of postmapping because of spring boot security (csrf needs to be disabled)
     @RequestMapping(value="/{name}/{kuerzel}/{land}", method = {RequestMethod.GET, RequestMethod.POST})
     public List<Boersenplatz> createNewBoersenplatz(@PathVariable String name, @PathVariable String kuerzel, @PathVariable String land){

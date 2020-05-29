@@ -62,6 +62,10 @@ public class SmokeTesting {
         assertThat(this.restTemplate.getForObject("http://localhost:" + port + "/Art", String.class).contains("idArt"));
     }
 
+    /**
+     * This test will only work when borsenplatz is available
+     * @throws Exception
+     */
     @Test
     public void whenPuttingABorsenplatzItGetsUpdated () throws Exception {
         this.restTemplate.withBasicAuth("dani", "dani");
@@ -84,6 +88,51 @@ public class SmokeTesting {
 
     private String getBorseinJson(long id) {
         return "{\"idBoersenplatz\":\"" + id + "\", \"name\":\"Hongkong Stock Exchange\", \"kuerzel\":\"HKG\", \"idCountry\":\"China\"}";
+    }
+
+    /**
+     * Execute this test when databases are dropped! (only then it works fine)
+     * @throws Exception
+     */
+    @Test
+    public void afterDroppingAllTablesTradesShouldBeEmpty() throws Exception{
+
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/findAllTrades")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content().string("[]")).andDo((MockMvcResultHandlers.print()));
+
+    }
+
+    @Test
+    public void whenTablesAreEmptyAndDataLoaderIsExecutedTradesShouldContainData() throws Exception{
+
+        //init dataset 1
+        MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/dataloader")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        this.mockMvc.perform(builder);
+
+        //init dataset 2 (get requests because data is being posted programmatically -> no post needed)
+        builder = MockMvcRequestBuilders.get("/dataloader2")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        this.mockMvc.perform(builder);
+
+        //check if data is correct
+        builder = MockMvcRequestBuilders.get("/findAllTrades")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("UTF-8");
+        this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.content()
+                        .string("[{\"titel\":\"Microsoft\",\"user\":\"dani el\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":123.78,\"units\":5,\"current\":56.22,\"currentPreis\":180.0,\"calcChange\":\"45.42%\"},{\"titel\":\"AMD\",\"user\":\"dani el\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":42.49,\"units\":5,\"current\":-25.98,\"currentPreis\":16.51,\"calcChange\":\"-61.14%\"}]"))
+                .andDo(MockMvcResultHandlers.print());
+
     }
 
 }
