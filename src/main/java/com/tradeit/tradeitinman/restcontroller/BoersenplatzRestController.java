@@ -71,19 +71,19 @@ public class BoersenplatzRestController {
     //curl -X PUT -i --user dani:dani localhost:8080/boerse/{updateID} -H 'Content-type:application/json' -d '{"name": "Hongkong Stock Exchange", "kuerzel": "HKG", "idCountry":"China"}'
     //due to spring security curl is not working yet properly (HTTP 302)
     @RequestMapping(value="/{updateID}", method = {RequestMethod.GET, RequestMethod.PUT})
-    public List<Boersenplatz> curlUpdateBoersenplatz(@PathVariable long updateID, @RequestBody Boersenplatz newBoersenplatz){
+    public Optional<Boersenplatz> curlUpdateBoersenplatz(@PathVariable long updateID, @RequestBody Boersenplatz newBoersenplatz){
         br.findById(updateID).map(
                 boersenplatz -> {
-                    boersenplatz.setName(boersenplatz.getName());
-                    boersenplatz.setKuerzel(boersenplatz.getKuerzel());
-                    boersenplatz.setIdCountry(boersenplatz.getIdCountry());
+                    boersenplatz.setName(newBoersenplatz.getName());
+                    boersenplatz.setKuerzel(newBoersenplatz.getKuerzel());
+                    boersenplatz.setIdCountry(newBoersenplatz.getIdCountry());
                     return br.save(boersenplatz);
                 }
         ).orElseGet(()->{
                 newBoersenplatz.setIdBoersenplatz(updateID);
                 return br.save(newBoersenplatz);}
         );
-        return br.findAllByOrderByName();
+        return br.findById(updateID);
     }
 
     @RequestMapping(value="/delete/{id}", method = {RequestMethod.GET, RequestMethod.DELETE})
