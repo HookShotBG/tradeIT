@@ -1,5 +1,7 @@
 package com.tradeit.tradeitinman.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,12 +15,17 @@ public class Preis {
 	private Date valid_from;
 	private Date valid_until;
 
+	@JsonIgnore
+	@ManyToOne
+	private Titel titel;
+
 	public Preis(){}
 
-	public Preis(double preis, Date valid_from, Date valid_until) {
+	public Preis(double preis, Date valid_from, Date valid_until, Titel titel) {
 		this.preis = preis;
 		this.valid_from = valid_from;
 		this.valid_until = valid_until;
+		this.titel = titel;
 	}
 
 	public Long getIdPreis() {
@@ -53,4 +60,11 @@ public class Preis {
 		this.valid_until = valid_until;
 	}
 
+	public Titel getTitel() {
+		return titel;
+	}
+
+	public void setTitel(Titel titel) {
+		this.titel = titel;
+	}
 }

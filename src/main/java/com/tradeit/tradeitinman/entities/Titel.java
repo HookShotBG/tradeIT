@@ -115,4 +115,8 @@ import java.util.List;
     public void setPreis(List<Preis> preis) {
         this.preis = preis;
     }
+
+    public Preis getLatestPreis(){
+        return this.preis.get(this.preis.size()-1);
+    }
 }
