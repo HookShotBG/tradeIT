@@ -1,9 +1,7 @@
 package com.tradeit.tradeitinman;
 import com.tradeit.tradeitinman.restcontroller.UserRestController;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
-import org.junit.jupiter.api.TestInstance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
@@ -21,6 +19,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 public class SmokeTesting {
@@ -92,9 +91,16 @@ public class SmokeTesting {
 
     /**
      * Execute this test when databases are dropped! (only then it works fine)
+     * junit should not have a specific run order since this would mean that test cases are
+     * dependent on each other. each test should be able to be executed as a standalone test
+     *
+     * however for testing reasons and implementing a new framework we added a fixed execution
+     * order to the junit tests (as well junit does not encourage devs to do this)
+     *
      * @throws Exception
      */
     @Test
+    @Order(1)
     public void afterDroppingAllTablesTradesShouldBeEmpty() throws Exception{
 
         MockHttpServletRequestBuilder builder = MockMvcRequestBuilders.get("/findAllTrades")
