@@ -12,10 +12,8 @@ $(document).ready(function () {
             //to the last element -> graph gets updated as well ^^
             resultSet = resultData[resultData.length - 1];
 
-            console.log(resultSet.preis);
+            //sorting array bc needed (data is fetched from rest but kinda strange)
             resultSet.preis.sort(compare);
-
-            console.log(resultSet.preis);
 
             function compare(a, b) {
                 // Use toUpperCase() to ignore character casing
