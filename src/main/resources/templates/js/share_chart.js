@@ -6,9 +6,29 @@ $(document).ready(function () {
 
         contentType: 'application/json; charset=utf-8',
         success: function (resultData) {
-            //append data to table
-            resultSet = resultData[0];
+            //append data to table (get first here -> 0 is hardcoded for first)
+            //resultData[0]
+            //we are now using the last because of the rest service which appends a price
+            //to the last element -> graph gets updated as well ^^
+            resultSet = resultData[resultData.length - 1];
 
+            console.log(resultSet.preis);
+            resultSet.preis.sort(compare);
+
+            console.log(resultSet.preis);
+
+            function compare(a, b) {
+                // Use toUpperCase() to ignore character casing
+                var date1 = a.idPreis;
+                var date2 = b.idPreis;
+                var comparison = 0;
+                if (date1 > date2) {
+                    comparison = 1;
+                } else if (date1 < date2) {
+                    comparison = -1;
+                }
+                return comparison;
+            }
 
             var xf = [];
             $.each(resultSet.preis, function(key, value){

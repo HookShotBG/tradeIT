@@ -9,6 +9,7 @@ public class TradeitinmanApplication {
     public static void main(String[] args) {
 
         /**
+         * TODO:
          * security configs can be found in security/WebSecurityConfig (username:password)
          *
          * to test this project application.properties might needs to be changed

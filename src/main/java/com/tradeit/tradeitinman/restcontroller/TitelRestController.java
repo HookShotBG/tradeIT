@@ -31,6 +31,7 @@ public class TitelRestController {
         return titelRepository.findAll();
     }
 
+    //used for chart
     @GetMapping("/stockX")
     List<Aktie> getAll(){
         return aktienRepository.findAll();

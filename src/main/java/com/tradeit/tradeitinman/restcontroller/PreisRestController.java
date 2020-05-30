@@ -42,14 +42,18 @@ public class PreisRestController {
         //getting all just to get titel of the latest one
         List<Preis> pl = pr.findAll();
         //using default values (just selecting the titel -> bc i dont want it as parameter)
-        Preis p = pl.get(pl.size()-1);
+        Preis p = new Preis();
         p.setPreis(preis);
-        p.setValid_from(p.getValid_until());
+        p.setValid_from(pl.get(pl.size()-1).getValid_until());
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Calendar c = Calendar.getInstance();
-        c.setTime(p.getValid_until());
+        c.setTime(pl.get(pl.size()-1).getValid_until());
         c.add(Calendar.DATE, 1);
         p.setValid_until(c.getTime());
+
+        p.setTitel(pl.get(pl.size()-1).getTitel());
+
+        p.getTitel().getPreis().add(p);
 
         pr.save(p);
         return pr.findAll();
