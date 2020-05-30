@@ -17,14 +17,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and()
-                .csrf().disable();/*.
-             //TODO
+                .csrf().disable().
+                //TODO
                 //hier ist der fehler -> wahrscheinlich wird role nicht mitgegeben (mit der deaktivierung von csrf und cors funktionierts
                 authorizeRequests()
                 .antMatchers("/*").hasRole("boss")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();*/
+                .formLogin();
     }
 
     @Override

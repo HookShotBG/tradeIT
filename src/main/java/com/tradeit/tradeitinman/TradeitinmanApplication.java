@@ -42,6 +42,22 @@ public class TradeitinmanApplication {
          * Integration of web api: integration of front end points (config in /security/MvcConfig)
          *
          * Security: Implementation of spring boot security (security/websecurityconfig)
+         *
+         * Exceptionhandling: in exceptionhandler pkg
+         *
+         * recommendation by dev team:
+         * Prerequisit: empty db:
+         * you can execute dataloader
+         *
+         * if db not empty:
+         * goto localhost:8080/
+         * navigate to portfolio -> then you can see some charts and stuff as well as
+         * the price which had been calculated form the backend in the table below the chart
+         *
+         * to add a price to the latest stock you could simply execute this:
+         * localhost:8080/preis/{yourNewPreis(int)}
+         *
+         * navigate again to localhost:8080/portfolio -> daily change is newly calculated
          */
 
 

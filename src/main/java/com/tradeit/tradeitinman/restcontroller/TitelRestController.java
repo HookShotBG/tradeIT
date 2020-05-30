@@ -36,7 +36,7 @@ public class TitelRestController {
         return aktienRepository.findAll();
     }
 
-	@RequestMapping(value = "/XXXXXX", method = RequestMethod.GET)
+	@RequestMapping(value = "/orderByTitelName", method = RequestMethod.GET)
 	public ResponseEntity<List<Titel>> getTitels() {
 		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
 		List<Titel> titel = titelRepository.findAllByOrderByName();
