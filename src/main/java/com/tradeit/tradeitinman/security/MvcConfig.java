@@ -21,6 +21,8 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/js/chart_movement.js").setViewName("/js/chart_movement.js");
         registry.addViewController("/js/app.js").setViewName("/js/app.js");
         registry.addViewController("/js/share_chart.js").setViewName("/js/share_chart.js");
+        registry.addViewController("/js/stock_table.js").setViewName("/js/stock_table.js");
+        registry.addViewController("/js/portfolio.js").setViewName("/js/portfolio.js");
     }
 
 }

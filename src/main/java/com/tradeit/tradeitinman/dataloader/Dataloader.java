@@ -35,12 +35,8 @@ public class Dataloader {
     @Autowired
     AktienRepository akr;
 
-    public Dataloader(){
-
-    }
-
     @GetMapping("/dataloader")
-    List<Aktienhandel> dataload(){
+    List<Aktienhandel> dataload1(){
 
 
         Boersenplatz b = new Boersenplatz("SIX Stock X", "SIX", "Switzerland");
@@ -408,5 +404,6 @@ public class Dataloader {
 
         return akhr.findAll();
     }
+
 
 }
