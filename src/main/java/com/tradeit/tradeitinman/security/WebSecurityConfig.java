@@ -18,7 +18,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .cors().and()
                 .csrf().disable();/*.
-
+             //TODO
                 //hier ist der fehler -> wahrscheinlich wird role nicht mitgegeben (mit der deaktivierung von csrf und cors funktionierts
                 authorizeRequests()
                 .antMatchers("/*").hasRole("boss")
@@ -39,7 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .withUser("ryan")
                 .password(encoder.encode("ryan"))
-                .roles("boss", "root");
+                .roles("boss", "root")
+                .and()
+                .withUser("matti")
+                .password(encoder.encode("matti"))
+                .roles("boss")
+                .and()
+                .withUser("marc")
+                .password(encoder.encode("marc"))
+                .roles("boss");
     }
 
 }
