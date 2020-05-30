@@ -17,6 +17,8 @@ public class Aktienhandel {
 	private int take_profit;
 
 	//foreignkeys
+
+	//N:M beziehung (zwischentabelle für User:Titel)
 	@ManyToOne
 	private Titel titel;
 

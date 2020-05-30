@@ -7,12 +7,11 @@ import com.tradeit.tradeitinman.repositories.PreisRepository;
 import com.tradeit.tradeitinman.repositories.TitelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
-import java.lang.reflect.Array;
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,8 +19,13 @@ import java.util.Optional;
 
 /**
  * 
- * REST-Controller für die Ressource Titel
- * 
+ * REST-Controller für die Ressource Aktienhandel
+ *
+ * Aktienhandel = N-M Beziehung von User zu Titel
+ * 1 User hat mehrere Titel & 1 Titel hat mehrere User
+ * -> 1 User hat mehrere Aktienhandel
+ * -> 1 Titel ist in mehreren Aktienhandel
+ *
  */
 
 @RestController
@@ -35,20 +39,38 @@ public class AktienhandelRestController {
 	@Autowired
 	private PreisRepository pr;
 
-	@RequestMapping(value = "/XXXXXXX", method = RequestMethod.GET)
+	@RequestMapping(value = "/listAlleAktien", method = RequestMethod.GET)
 	public ResponseEntity<List<Aktienhandel>> getAktien() {
-		// Alle Karten aus dem Repository laden und der cards-Variable zuweisen
 		List<Aktienhandel> aktien = aktienRepository.findAll();
-		// Wenn die Liste Einträge enthält...
 		if (aktien != null && !aktien.isEmpty()) {
-			// ... dann diese als Body zurückgeben
 			return new ResponseEntity(aktien, HttpStatus.OK);
 		} else {
-			// ... ansonsten ResourceNotFoundException (404)
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 
 		}
 
+	}
+
+	@RequestMapping(value="/listByMoney", method = RequestMethod.GET)
+	public ResponseEntity<List<Aktienhandel>>  getAktienByMoney(){
+		List<Aktienhandel> a = aktienRepository.findAllByOrderByInvested();
+		if(a != null && !a.isEmpty()){
+			return new ResponseEntity(a, HttpStatus.OK);
+		}
+		else{
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
+	}
+
+	@RequestMapping(value="/listByTitel/{t}", method = RequestMethod.GET)
+	public ResponseEntity<Optional<Aktienhandel>>  getAktienByTitel(@PathVariable Titel t){
+		Optional<Aktienhandel> a = aktienRepository.findByTitel(t);
+		if(a != null){
+			return new ResponseEntity(a, HttpStatus.OK);
+		}
+		else{
+			return new ResponseEntity(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@GetMapping("/portfolioDetails")
