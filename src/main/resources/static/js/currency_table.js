@@ -1,7 +1,6 @@
 new Vue({
-    el: '#currency',
+    el: '#crypto',
     data: {
-        currency: '',
         currencies: [
             {
                 id: 1,

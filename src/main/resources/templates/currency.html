@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>s
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 <script src="/components/navigation.js"></script>
@@ -68,6 +68,7 @@
                   </tr>
                 </tbody>
               </table>
+            <div id="crypto">
               <table class="table table-hover">
                 <thead>
                   <tr>
@@ -79,26 +80,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>Bitcoin</td>
-                    <td>6543.79</td>
-                    <td class="pLoss">-1.42%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>Ethereum</td>
-                    <td>139.7647</td>
-                    <td class="pLoss">-1.78%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>Litecoinv</td>
-                    <td>39.9755</td>
-                    <td class="pProfit">+0.11%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
+                  <!--
+                  TODO:
+                  Abfüllen von Werten aus currency_table.js
+                  -> Das ganze ebenfalls für ETF machen
+                  -->
+
+
                 </tbody>
               </table>
+            </div>
           </div>
         </div>
       </div>
