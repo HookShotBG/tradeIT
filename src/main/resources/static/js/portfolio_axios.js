@@ -28,7 +28,11 @@ new Vue({
         calculations(firstValue, secondValue) {
             var priceChange = firstValue*100/secondValue-100;
             priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
-            console.log(priceChange);
+            if(priceChange >= 0){
+                priceChange = '+' + priceChange;
+            }else {
+                priceChange = '-' + priceChange;
+            }
             return priceChange;
         }
     }

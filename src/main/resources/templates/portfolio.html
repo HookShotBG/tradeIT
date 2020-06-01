@@ -122,7 +122,7 @@
                   <td>{{name.name}}</td>
                   <td>{{name.preis[name.preis.length-1].preis}}</td>
                   <td>{{calculations(name.preis[name.preis.length-1].preis, name.preis[name.preis.length-2].preis)}}%</td>
-                  <td>{{name.boersenplatz.kuerzel}}%</td>
+                  <td>{{name.boersenplatz.kuerzel}}</td>
                   <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
                   <td><button type="button" class="sellButton" data-toggle="modal" data-target="#sellModal"> Sell</button></td></td>
                 </tr>
@@ -351,7 +351,7 @@
 </div>
 
 <script src="/js/portfolio_axios.js"></script>
-<script src="/js/portfolio.js"></script>
+<!-- <script src="/js/portfolio.js"></script> -->
 <script src="/js/share_chart.js"></script>
 </body>
 </html>
