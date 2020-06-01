@@ -34,13 +34,13 @@ $(document).ready(function () {
                 var t = {
                     x: ff,
                     y:value.preis,
-                    indexLabel: "gain", markerType: "triangle",  markerColor: "#6B8E23"
+                    indexLabel: "", markerType: "circle",  markerColor: "#6B8E23"
                 };
 
                 if(key > 0){
                     if(value.preis < resultSet.preis[key-1].preis){
-                        t.indexLabel = "loss";
-                        t.markerType = "cross";
+                        t.indexLabel = "";
+                        t.markerType = "circle";
                         t.markerColor = "tomato";
                     }
                 }
@@ -49,7 +49,7 @@ $(document).ready(function () {
             });
 
             var chart = new CanvasJS.Chart("share_chartContainer", {
-                theme: "dark1",
+                theme: "light1",
                 animationEnabled: true,
                 title:{
                     text: resultSet.name

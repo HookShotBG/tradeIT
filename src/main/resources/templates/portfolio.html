@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link rel="stylesheet" type="text/css" href="/css/main.css">
 
 </head>
 <body>
@@ -25,12 +25,12 @@
       <a class="navbar-brand" href="#">TradeIT</a>
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav">
+      <ul class="nav nav-list">
         <li><a href="markets">Markets</a></li>
         <li class="active"><a href="portfolio">Portfolio</a></li>
-        <li><a href="#section2">Watchlist</a></li>
-        <li><a href="#section3">Social</a></li>
-        <li><a href="#section3">Settings</a></li>
+        <li class="disabled"><a href="#section2">Watchlist</a></li>
+        <li class="disabled"><a href="#section3">Social</a></li>
+        <li class="disabled"><a href="#section3">Settings</a></li>
         <li><a href="/logout" method="post">Sign Out</a></li>
       </ul>
     </div>
@@ -44,9 +44,9 @@
       <ul class="nav nav-pills nav-stacked">
         <li><a href="markets">Markets</a></li>
         <li class="active"><a href="portfolio">Portfolio</a></li>
-        <li><a href="#section2">Watchlist</a></li>
-        <li><a href="#section3">Social</a></li>
-        <li><a href="#section3">Settings</a></li>
+        <li class="disabled"><a href="#section2">Watchlist</a></li>
+        <li class="disabled"><a href="#section3">Social</a></li>
+        <li class="disabled"><a href="#section3">Settings</a></li>
         <li><a href="/logout" method="post">Sign Out</a></li>
       </ul><br>
     </div>
@@ -76,7 +76,8 @@
       <div class="row">
         <div class="col-sm-8">
           <div class="well">
-            <script src="js/share_chart.js"></script>
+
+            <script src="/js/share_chart.js"></script>
 
             <div id="share_chartContainer" style="height: 300px; width: 100%;"></div>
 <!--            <script src="js/chart_movement.js"></script>
