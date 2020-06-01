@@ -1,5 +1,5 @@
-Vue.component('headerView', {
-    template: '<div class="row">\n' +
+Vue.component('headerview', {
+    template: '<div><div class="row">\n' +
         '        <div class="col-sm-4">\n' +
         '          <div class="well">\n' +
         '            <h3>AVAILABLE</h3>\n' +
@@ -27,5 +27,5 @@ Vue.component('headerView', {
         '              </div>\n' +
         '              </div>\n' +
         '        </div>\n' +
-        '      </div>'
+        '      </div></div>'
 })
