@@ -17,11 +17,5 @@ public class MvcConfig implements WebMvcConfigurer {
         registry.addViewController("/portfolio").setViewName("portfolio");
         registry.addViewController("/errorhandling/error").setViewName("error");
 
-        //registry for JS / CSS and images (needed because of spring security)
-        registry.addViewController("/css/main.css").setViewName("main.css");
-        registry.addViewController("/js/app.js").setViewName("app.js");
-        registry.addViewController("/js/share_chart.js").setViewName("share_chart.js");
-        registry.addViewController("/js/stock_table.js").setViewName("stock_table.js");
-        registry.addViewController("/js/portfolio.js").setViewName("portfolio.js");
     }
 }
