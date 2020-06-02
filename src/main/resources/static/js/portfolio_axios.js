@@ -1,39 +1,46 @@
 new Vue({
     el: '#container',
     data: {
-        json: null
-    },
-    mounted: function () {
-        axios
-            .get('/stockX')
-            .then(response => (this.json = response.data));
-
-
-    },
-    computed: {
-        getCalcDiff: function (){
-            this.json.forEach((val) => {
-                var aktueller_Preis = val.preis[val.preis.length - 1];
-                var zweiterPreis = val.preis[val.preis.length - 2]; //needed for calculations
-
-                //calc preis veränderung in %
-                var priceChange = aktueller_Preis.preis*100/zweiterPreis.preis-100;
-                priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
-                console.log(priceChange);
-                return priceChange;
-            })
+        json: null,
+        overview_json: null,
+        classes: {
+            isLoss: false,
+            isProfit: false
         }
     },
+    mounted: function () {
+        this.getPortfolioData();
+        this.getOverviewData();
+        this.overview_json = this.overview_json[this.overview_json.length-1];
+    },
     methods: {
-        calculations(firstValue, secondValue) {
-            var priceChange = firstValue*100/secondValue-100;
+        getPortfolioData: function(){
+            axios
+                .get('/stockX')
+                .then(response => (this.json = response.data));
+        },
+        getOverviewData: function(){
+          axios.get('/findAllTrades').then(response => (this.overview_json = response));
+        },
+        calculations: function (firstValue, secondValue) {
+            console.log(this.overview_json );
+            let priceChange = firstValue*100/secondValue-100;
             priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
             if(priceChange >= 0){
                 priceChange = '+' + priceChange;
+                this.classes.isProfit = false;
+                this.classes.isLoss= true;
             }else {
-                priceChange = '-' + priceChange;
+                this.classes.isProfit = true;
+                this.classes.isLoss = false;
             }
             return priceChange;
+        },
+        createNewPreis : function (event){
+            //create new preis between 1 and 100
+            const newPreis = Math.floor((Math.random() * 100) + 1);
+            const postRequest = 'http://localhost:8080/preis/' + newPreis;
+            axios.post(postRequest);
         }
     }
 });
