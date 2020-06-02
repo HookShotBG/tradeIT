@@ -44,18 +44,28 @@ new Vue({
 
 
 
+
             //this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis);
 
         },
-        something() {
-            return new Promise((resolve) => {
-                resolve(axios.get('/preis/latestPreis')).then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
-            });
+        something : function (){
+            this.addPrice().then((result) =>{
+                this.latestPrice().then((used) => {
+                    console.log("penisman");
+                    console.log(result);
+                    console.log(this.json[this.json.length-1].preis[this.json[this.json.length-1]].preis);
+                    console.log(this.json[this.json.length-1].preis[this.json[this.json.length-2]].preis);
+
+                })
+            })
         },
-        anotherMethod() {
-            this.something('blah').then((data) => {
-                this.foo = data;
-            });
+        addPrice(){
+            const newPreis = Math.floor((Math.random() * 100) + 1);
+            const postRequest = 'http://localhost:8080/preis/' + newPreis;
+            return axios.post(postRequest);
+        },
+        latestPrice (){
+            return axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data)));
         }
     }
 });
