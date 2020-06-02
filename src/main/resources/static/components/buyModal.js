@@ -1,8 +1,5 @@
-Vue.component('buyModal', {
-    template: '\n' +
-        '<div><div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">\n' +
-        '    <div class="modal-dialog" role="document">\n' +
-        '        <div class="modal-content">\n' +
+Vue.component('buymodal', {
+    template: '<div class="modal-content">\n' +
         '            <div class="modal-header">\n' +
         '                <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
         '                    <span aria-hidden="true">&times;</span>\n' +
@@ -74,7 +71,5 @@ Vue.component('buyModal', {
         '                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>\n' +
         '                <button type="button" class="btn btn-primary" data-dismiss="modal">Buy</button>\n' +
         '            </div>\n' +
-        '        </div>\n' +
-        '    </div>\n' +
-        '</div></div>'
+        '        </div>'
 })

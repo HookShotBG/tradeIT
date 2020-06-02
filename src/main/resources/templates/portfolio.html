@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>
+  <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.2/axios.min.js"></script>-->
 
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 
@@ -19,6 +19,9 @@
 <script src="/components/navigation.js"></script>
 <script src="/components/mobile-navigation.js"></script>
 <script src="/components/header.js"></script>
+<script src="/components/buyModal.js"></script>
+<script src="/components/sellModal.js"></script>
+<script src="/components/detailModal.js"></script>
 
 <div id="container">
 
@@ -116,220 +119,23 @@
       </div>
     </div>
   </div>
-</div>
 
-</div>
+
 <div class="modal fade" id="sellModal" tabindex="-1" role="dialog" aria-labelledby="sellModalArea" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3 class="modal-title" id="sellModalArea">Sell</h3>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <form>
-            <div class="form-group row">
-              <label for="staticSymbol" class="col-sm-4 col-form-label">Symbol:</label>
-              <div class="col-sm-8">
-                <span id="staticSymbol">VUSA</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticPrice" class="col-sm-4 col-form-label">Price:</label>
-              <div class="col-sm-8">
-                <span id="staticPrice" >48.10 CHF</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticValor" class="col-sm-4 col-form-label">Valor:</label>
-              <div class="col-sm-8">
-                <span id="staticValor" >1298739</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticZeit" class="col-sm-4 col-form-label">Time:</label>
-              <div class="col-sm-8">
-                <span id="staticZeit" >10:06:15</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputUnits" class="col-sm-4 col-form-label">Units:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputUnits" placeholder="Units">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputLimite" class="col-sm-4 col-form-label">Limit:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputLimite" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputStoploss" class="col-sm-4 col-form-label">Stop Loss:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputStoploss" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputTakeprofit" class="col-sm-4 col-form-label">Take Profit:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputTakeprofit" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticGegenwert" class="col-sm-4 col-form-label">Equivalent:</label>
-              <div class="col-sm-8">
-                <span id="staticGegenwert">2000 USD</span>
-              </div>
-            </div>
-          </form>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Sell</button>
-      </div>
-    </div>
+    <sellmodal></sellmodal>
   </div>
 </div>
-
 <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3 class="modal-title" id="buyModalArea">Buy</h3>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <form>
-            <div class="form-group row">
-              <label for="staticSymbol" class="col-sm-4 col-form-label">Symbol:</label>
-              <div class="col-sm-8">
-                <span id="staticSymbol">VUSA</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticPrice" class="col-sm-4 col-form-label">Price:</label>
-              <div class="col-sm-8">
-                <span id="staticPrice" >48.10 CHF</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticValor" class="col-sm-4 col-form-label">Valor:</label>
-              <div class="col-sm-8">
-                <span id="staticValor" >1298739</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticZeit" class="col-sm-4 col-form-label">Time:</label>
-              <div class="col-sm-8">
-                <span id="staticZeit" >10:06:15</span>
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputUnits" class="col-sm-4 col-form-label">Units:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputUnits" placeholder="Units">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputLimite" class="col-sm-4 col-form-label">Limit:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputLimite" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputStoploss" class="col-sm-4 col-form-label">Stop Loss:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputStoploss" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="inputTakeprofit" class="col-sm-4 col-form-label">Take Profit:</label>
-              <div class="col-sm-8">
-                <input type="number" class="form-control" id="inputTakeprofit" placeholder="Optional">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label for="staticGegenwert" class="col-sm-4 col-form-label">Equivalent:</label>
-              <div class="col-sm-8">
-                <span id="staticGegenwert">2000 USD</span>
-              </div>
-            </div>
-          </form>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Buy</button>
-      </div>
-    </div>
+    <buymodal></buymodal>
   </div>
 </div>
 
 
 <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-        <h3 class="modal-title" id="exampleModalLabel">AMD Details</h3>
-      </div>
-
-      <div class="modal-body">
-        <form>
-          <div class="form-group row">
-            <label for="staticPEratio" class="col-sm-4 col-form-label">P/E Ratio:</label>
-            <div class="col-sm-8">
-              <span id="staticPEratio" >27.91</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticMarketcap" class="col-sm-4 col-form-label">Marketcap:</label>
-            <div class="col-sm-8">
-              <span id="staticMarketcap">1210 Billions</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="static52weekhigh" class="col-sm-4 col-form-label">52 Week High:</label>
-            <div class="col-sm-8">
-              <span id="static52weekhigh">190.7</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="static52weeklow" class="col-sm-4 col-form-label">52 Week Low:</label>
-            <div class="col-sm-8">
-              <span id="static52weeklow">118.1</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticdivyield" class="col-sm-4 col-form-label">Dividend yield:</label>
-            <div class="col-sm-8">
-              <span id="staticdivyield">1.27%</span>
-            </div>
-          </div>
-          <div class="form-group row">
-            <label for="staticRevenue" class="col-sm-4 col-form-label">Revenue:</label>
-            <div class="col-sm-8">
-              <span id="staticRevenue" >125.8 Billion USD</span>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+    <detailmodal></detailmodal>
   </div>
 </div>
 
