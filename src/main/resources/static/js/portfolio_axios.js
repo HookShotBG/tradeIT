@@ -22,8 +22,8 @@ new Vue({
           axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
         },
 
-        calculateProfitLoss: function(currentPreis, investedPreis){
-            pl = currentPreis - investedPreis
+        calculateProfitLoss: function(currentPreis, investedPreis, units){
+            pl = (currentPreis - investedPreis) * units
             pl = Math.round((pl + Number.EPSILON) * 100) / 100
             if(pl >= 0){
                 pl = '+' + pl;
