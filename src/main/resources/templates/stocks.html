@@ -61,7 +61,6 @@
                             </tr>
                             </thead>
                             <tbody id="stockdataTable">
-                                <!--<script src="/js/stock_table.js"></script>-->
                                 <tr v-for="name in json" class="clickable-row">
                                     <td>{{name.name}}</td>
                                     <td>{{name.preis[name.preis.length-1].preis}}</td>
@@ -79,11 +78,12 @@
 
 
 
-<div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <buymodal></buymodal>
+    <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <buymodal></buymodal>
+        </div>
     </div>
-</div>
+
 
 <script src="/js/stock_axios.js"></script>
 <script src="/js/rootVueComponent.js"></script>

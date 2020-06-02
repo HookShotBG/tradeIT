@@ -4,7 +4,7 @@ Vue.component('detailmodal', {
         '        <button type="button" class="close" data-dismiss="modal" aria-label="Close">\n' +
         '          <span aria-hidden="true">&times;</span>\n' +
         '        </button>\n' +
-        '        <h3 class="modal-title" id="exampleModalLabel">Microsoft Details</h3>\n' +
+        '        <h3 class="modal-title" id="exampleModalLabel">AMD Details</h3>\n' +
         '      </div>\n' +
         '\n' +
         '      <div class="modal-body">\n' +
