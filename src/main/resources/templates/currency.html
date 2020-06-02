@@ -35,8 +35,8 @@
         <div class="col-sm-12">
           <div class="well">
             <div class="active-cyan-4 mb-4">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-              </div>
+              <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+            </div>
             <h3>Currency</h3> 
             <table class="table table-hover">
                 <thead>
@@ -69,25 +69,39 @@
                   </tr>
                 </tbody>
               </table>
+
+              <h3>Cryptocurrency</h3>
               <table class="table table-hover">
                 <thead>
-                  <tr>
-                    <th scope="col">Cryptocurrency</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col">Daily Change</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
+                <tr>
+                  <th scope="col">Cryptocurrency</th>
+                  <th scope="col">Rate</th>
+                  <th scope="col">Daily Change</th>
+                  <th scope="col"></th>
+                  <th scope="col"></th>
+                </tr>
                 </thead>
                 <tbody>
-                  <!--
-                  TODO:
-                  Abfüllen von Werten aus currency_table.js
-                  -> Das ganze ebenfalls für ETF machen
-                  -->
-
-                </tbody>
-              </table>
+                <tr>
+                  <td>Bitcoin</td>
+                  <td>6543.7</td>
+                  <td class="pLoss">-1.42%</td>
+                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
+                </tr>
+                <tr>
+                  <td>Ethereum</td>
+                  <td>139.76</td>
+                  <td class="pLoss">-1.78%</td>
+                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
+                </tr>
+                <tr>
+                  <td>Litecoinv</td>
+                  <td>39.975</td>
+                  <td class="pProfit">+0.11%</td>
+                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
