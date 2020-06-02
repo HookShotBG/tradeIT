@@ -9,7 +9,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 </head>
 <body>
@@ -33,71 +33,43 @@
     <div class="col-sm-8">
       <div class="row">
         <div class="col-sm-12">
-          <div class="well">
+          <div id="curr" class="well">
             <div class="active-cyan-4 mb-4">
               <input class="form-control" type="text" placeholder="Search" aria-label="Search">
             </div>
-            <h3>Currency</h3> 
             <table class="table table-hover">
-                <thead>
-                  <tr>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col">Daily Change</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Euro</td>
-                    <td>1.0562</td>
-                    <td class="pLoss">-0.14%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>US DOLLAR</td>
-                    <td>0.9784</td>
-                    <td class="pProfit">+0.47%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>Australian Dollar</td>
-                    <td>0.5869</td>
-                    <td class="pProfit">+0.65%</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                </tbody>
-              </table>
+              <thead>
+                <tr>
+                  <th scope="col">Currency</th>
+                  <th scope="col">Rate</th>
+                  <th scope="col">Daily Change</th>
+                  <th scope="col"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="curr in currencies">
+                  <td style="width: 280px;">{{curr.title}}</td>
+                  <td style="width: 200px;">{{curr.rate}}</td>
+                  <td style="width: 300px;">{{curr.dailyChange}}</td>
+                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
+                </tr>
+              </tbody>
+            </table>
 
-              <h3>Cryptocurrency</h3>
-              <table class="table table-hover">
-                <thead>
+            <table class="table table-hover">
+              <thead>
                 <tr>
                   <th scope="col">Cryptocurrency</th>
                   <th scope="col">Rate</th>
                   <th scope="col">Daily Change</th>
-                  <th scope="col"></th>
-                  <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
-                </thead>
-                <tbody>
-                <tr>
-                  <td>Bitcoin</td>
-                  <td>6543.7</td>
-                  <td class="pLoss">-1.42%</td>
-                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                </tr>
-                <tr>
-                  <td>Ethereum</td>
-                  <td>139.76</td>
-                  <td class="pLoss">-1.78%</td>
-                  <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                </tr>
-                <tr>
-                  <td>Litecoinv</td>
-                  <td>39.975</td>
-                  <td class="pProfit">+0.11%</td>
+              </thead>
+              <tbody>
+                <tr v-for="cr in crypto">
+                  <td style="width: 280px;">{{cr.title}}</td>
+                  <td style="width: 200px;">{{cr.rate}}</td>
+                  <td style="width: 300px;">{{cr.dailyChange}}</td>
                   <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
                 </tr>
               </tbody>
@@ -108,6 +80,7 @@
     </div>
   </div>
 </div>
+</div>
 
 <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -115,10 +88,7 @@
   </div>
 </div>
 
-
-
-
-
+<script src="/js/currency_axios.js"></script>
 <script src="/js/rootVueComponent.js"></script>
 </body>
 </html>

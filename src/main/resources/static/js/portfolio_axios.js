@@ -44,7 +44,7 @@ new Vue({
             const postRequest = 'http://localhost:8080/preis/' + newPreis;
             axios.post(postRequest);
             axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
-            
+
         }
     }
 });

@@ -35,10 +35,10 @@
     <div class="col-sm-8">
       <div class="row">
         <div class="col-sm-12">
-          <div class="well">
+          <div id="etf" class="well">
             <div class="active-cyan-4 mb-4">
                 <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-              </div>
+            </div>
             <h3>ETF</h3> 
             <table class="table table-hover">
                 <thead>
@@ -52,25 +52,11 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>BOTZ</td>
-                    <td>17.45</td>
-                    <td class="pProfit">+2.23%</td>
-                    <td>NASDAQ</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>ROBO</td>
-                    <td>32.33</td>
-                    <td class="pProfit">+1.38%</td>
-                    <td>NASDAQ</td>
-                    <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
-                  </tr>
-                  <tr>
-                    <td>IBUY</td>
-                    <td>39.41</td>
-                    <td class="pLoss">-0.83%</td>
-                    <td>NASDAQ</td>
+                  <tr v-for="e in etfs">
+                    <td>{{e.title}}</td>
+                    <td>{{e.rate}}</td>
+                    <td>{{e.dailyChange}}</td>
+                    <td>{{e.exchange}}</td>
                     <td><button type="button" class="buyButton" data-toggle="modal" data-target="#buyModal">Buy</button></td>
                   </tr>
                 </tbody>
@@ -81,13 +67,13 @@
     </div>
   </div>
 </div>
-
+</div>
 <div class="modal fade" id="buyModal" tabindex="-1" role="dialog" aria-labelledby="buyModalArea" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <buymodal></buymodal>
   </div>
 </div>
-
+<script src="/js/etf_axios.js"></script>
 <script src="/js/rootVueComponent.js"></script>
 </body>
 </html>
