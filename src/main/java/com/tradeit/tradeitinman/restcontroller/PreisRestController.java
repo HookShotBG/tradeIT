@@ -58,4 +58,11 @@ public class PreisRestController {
         pr.save(p);
         return pr.findAll();
     }
+
+    @GetMapping("/latestPreis")
+    public Preis getLatestPreis(){
+        List<Preis> pl = pr.findAll();
+        Preis p = pl.get(pl.size()-1);
+        return p;
+    }
 }

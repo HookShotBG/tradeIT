@@ -54,19 +54,19 @@
             <table>
               <tr>
                 <td width="90%">Rate:</td>
-                <td>16.5</td>
+                <td>{{overview_json.currentPreis}}</td>
               </tr>
               <tr>
                 <td width="90%">My Investment:</td>
-                <td>1567.5</td>
+                <td>{{overview_json.invested}}</td>
               </tr>
               <tr>
                 <td width="90%">Invested at:</td>
-                <td>16.5</td>
+                <td>{{overview_json.preis}}</td>
               </tr>
               <tr>
                 <td width="90%">Units:</td>
-                <td>95</td>
+                <td>{{overview_json.units}}</td>
               </tr>
               <tr>
                 <td width="90%">Profit/Loss:</td>
@@ -80,7 +80,7 @@
             <br>
             <div class="row">
               <div id="detailbutton" class="col-md-6">
-                <button type="button" class="buyButton" data-toggle="detailModal" data-target="#buyModal">Details</button>
+                <button type="button" class="buyButton" data-toggle="detailModal" data-target="#detailModal">Details</button>
               </div>
               <div id="staticPreis" class="col-md-6">
                 <button type="button" class="sellButton" v-on:click="createNewPreis" data-target="#sellModal">Add Preis</button>

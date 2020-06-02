@@ -11,7 +11,6 @@ new Vue({
     mounted: function () {
         this.getPortfolioData();
         this.getOverviewData();
-        this.overview_json = this.overview_json[this.overview_json.length-1];
     },
     methods: {
         getPortfolioData: function(){
@@ -20,11 +19,11 @@ new Vue({
                 .then(response => (this.json = response.data));
         },
         getOverviewData: function(){
-          axios.get('/findAllTrades').then(response => (this.overview_json = response));
+          axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
         },
         calculations: function (firstValue, secondValue) {
-            console.log(this.overview_json );
-            let priceChange = firstValue*100/secondValue-100;
+            console.log("power " + this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis);
+           let priceChange = firstValue*100/secondValue-100;
             priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
             if(priceChange >= 0){
                 priceChange = '+' + priceChange;
@@ -36,11 +35,16 @@ new Vue({
             }
             return priceChange;
         },
+        overViewCalcs: function(){
+
+        },
         createNewPreis : function (event){
             //create new preis between 1 and 100
             const newPreis = Math.floor((Math.random() * 100) + 1);
             const postRequest = 'http://localhost:8080/preis/' + newPreis;
             axios.post(postRequest);
+            axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
+            
         }
     }
 });
