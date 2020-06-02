@@ -68,11 +68,11 @@
               </tr>
               <tr>
                 <td width="90%">Profit/Loss:</td>
-                <td><span class="pProfit">+0</span></td> <!-- aktueller wert im vergleich zu invested --> <!-- localhost:8080/preis/16 -->
+                <td> {{calculateProfitLoss(overview_json.currentPreis, overview_json.preis)}}</td>
               </tr>
               <tr>
                 <td width="90%">Profit/Loss %:</td>
-                <td><span class="pProfit" >+0%</span></td> <!-- aktueller wert im vergleich zu invested % -->
+                <td> {{calculateProfitLossPerc(overview_json.currentPreis, overview_json.preis)}}</td>
               </tr>
             </table>
             <br>

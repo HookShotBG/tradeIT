@@ -21,6 +21,34 @@ new Vue({
         getOverviewData: function(){
           axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
         },
+
+        calculateProfitLoss: function(currentPreis, investedPreis){
+            pl = currentPreis - investedPreis
+            pl = Math.round((pl + Number.EPSILON) * 100) / 100
+            if(pl >= 0){
+                pl = '+' + pl;
+                this.classes.isProfit = false;
+                this.classes.isLoss= true;
+            }else {
+                this.classes.isProfit = true;
+                this.classes.isLoss = false;
+            }
+            return pl
+        },
+        calculateProfitLossPerc: function(currentPreis, investedPreis){
+            var pl = currentPreis*100/investedPreis-100;
+            pl = Math.round((pl + Number.EPSILON) * 100) / 100
+            if(pl >= 0){
+                pl = '+' + pl + "%";
+                this.classes.isProfit = false;
+                this.classes.isLoss= true;
+            }else {
+                this.classes.isProfit = true;
+                this.classes.isLoss = false;
+            }
+            return pl
+        },
+
         calculations: function (firstValue, secondValue) {
             console.log(firstValue);
             console.log(secondValue);
