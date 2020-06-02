@@ -72,7 +72,7 @@
               </tr>
               <tr>
                 <td width="90%">Profit/Loss %:</td>
-                <td> {{calculateProfitLossPerc(overview_json.currentPreis, overview_json.preis)}}</td>
+                <td> {{calculations(overview_json.currentPreis, overview_json.preis)}}</td>
               </tr>
             </table>
             <br>
@@ -81,7 +81,7 @@
                 <button type="button" class="buyButton" data-toggle="modal" data-target="#detailModal">Details</button>
               </div>
               <div id="staticPreis" class="col-md-6">
-                <button type="button" class="sellButton" v-on:click="something">Add Preis</button>
+                <button type="button" class="sellButton" v-on:click="createNewPreis">Add Preis</button>
               </div>
             </div>
             <br>
