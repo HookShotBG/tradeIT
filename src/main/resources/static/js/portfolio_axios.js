@@ -8,13 +8,18 @@ new Vue({
             isProfit: false
         },
         resultSet: null,
-        chart: null
+        chart: null,
+        rate: null,
+        pl: null,
+        plp: null,
+        inv: null,
+        uni: null,
+        invat: null
     },
     mounted: function () {
         this.getPortfolioData();
         this.getOverviewData();
         this.drawChart();
-
     },
     methods: {
         getPortfolioData: function(){
@@ -23,10 +28,18 @@ new Vue({
                 .then(response => (this.json = response.data));
         },
         getOverviewData: function(){
-          axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
+          axios.get('/findSingleTrade/2').then((response) => {
+              this.overview_json = response.data;
+              this.rate = this.overview_json.currentPreis;
+              this.inv=this.overview_json.invested;
+              this.invat=this.overview_json.preis;
+              this.uni=this.overview_json.units;
+              this.pl = this.calculateProfitLoss(this.overview_json.currentPreis, this.overview_json.preis);
+              this.plp = this.calculations(this.overview_json.currentPreis, this.overview_json.preis);
+          });
         },
         calculateProfitLoss: function(currentPreis, investedPreis){
-            pl = currentPreis - investedPreis
+            var pl =  currentPreis - investedPreis;
             pl = Math.round((pl + Number.EPSILON) * 100) / 100
             if(pl >= 0){
                 pl = '+' + pl;
@@ -56,7 +69,10 @@ new Vue({
                 this.latestPrice().then((used) => {
                     this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis);
                     this.drawChart();
-                    this.calculateProfitLoss();
+                    const currentPreis = this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis;
+                    this.rate = currentPreis;
+                    this.pl = this.calculateProfitLoss(currentPreis, this.overview_json.preis);
+                    this.plp = this.calculations(currentPreis, this.overview_json.preis);
                 })
             })
         },
