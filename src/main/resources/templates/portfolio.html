@@ -68,11 +68,11 @@
               </tr>
               <tr>
                 <td width="90%">Profit/Loss:</td>
-                <td><span class="pProfit">+0</span></td>
+                <td><span class="pProfit">+0</span></td> <!-- aktueller wert im vergleich zu invested --> <!-- localhost:8080/preis/16 -->
               </tr>
               <tr>
                 <td width="90%">Profit/Loss %:</td>
-                <td><span class="pProfit" >+0%</span></td>
+                <td><span class="pProfit" >+0%</span></td> <!-- aktueller wert im vergleich zu invested % -->
               </tr>
             </table>
             <br>
@@ -81,7 +81,7 @@
                 <button type="button" class="buyButton" data-toggle="modal" data-target="#detailModal">Details</button>
               </div>
               <div id="staticPreis" class="col-md-6">
-                <button type="button" class="sellButton" v-on:click="createNewPreis">Add Preis</button>
+                <button type="button" class="sellButton" v-on:click="something">Add Preis</button>
               </div>
             </div>
             <br>
@@ -112,6 +112,7 @@
                   </tr>
                 </thead>
                 <tbody id="stockdataTable">
+                <!-- add key to class -->
                 <tr v-for="(name, index) in json" class="clickable-row" v-bind:key="index">
                   <td>{{name.name}}</td>
                   <td>{{name.preis[name.preis.length-1].preis}}</td>

@@ -22,8 +22,9 @@ new Vue({
           axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
         },
         calculations: function (firstValue, secondValue) {
-            console.log("power " + this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis);
-           let priceChange = firstValue*100/secondValue-100;
+            console.log(firstValue);
+            console.log(secondValue);
+            var priceChange = firstValue*100/secondValue-100;
             priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
             if(priceChange >= 0){
                 priceChange = '+' + priceChange;
@@ -35,16 +36,26 @@ new Vue({
             }
             return priceChange;
         },
-        overViewCalcs: function(){
-
-        },
-        createNewPreis : function (event){
-            //create new preis between 1 and 100
+        createNewPreis : async function (event){
             const newPreis = Math.floor((Math.random() * 100) + 1);
             const postRequest = 'http://localhost:8080/preis/' + newPreis;
             axios.post(postRequest);
-            axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
+            await axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data))).resolve(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
 
+
+
+            //this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis);
+
+        },
+        something() {
+            return new Promise((resolve) => {
+                resolve(axios.get('/preis/latestPreis')).then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
+            });
+        },
+        anotherMethod() {
+            this.something('blah').then((data) => {
+                this.foo = data;
+            });
         }
     }
 });
