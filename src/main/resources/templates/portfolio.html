@@ -15,8 +15,6 @@
 
   <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
 
-  <!-- vue cdn -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 </head>
 <body>
 
@@ -80,10 +78,10 @@
             <br>
             <div class="row">
               <div id="detailbutton" class="col-md-6">
-                <button type="button" class="buyButton" data-toggle="detailModal" data-target="#buyModal">Details</button>
+                <button type="button" class="buyButton" data-toggle="modal" data-target="#detailModal">Details</button>
               </div>
               <div id="staticPreis" class="col-md-6">
-                <button type="button" class="sellButton" v-on:click="createNewPreis" data-target="#sellModal">Add Preis</button>
+                <button type="button" class="sellButton" v-on:click="createNewPreis">Add Preis</button>
               </div>
             </div>
             <br>
@@ -141,7 +139,7 @@
         <buymodal></buymodal>
       </div>
     </div>
-    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="detailModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <detailmodal></detailmodal>
       </div>
