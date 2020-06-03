@@ -33,12 +33,6 @@ public class AktienhandelRestController {
 	@Autowired
 	private AktienhandelRepository aktienRepository;
 
-	@Autowired
-	private TitelRepository tr;
-
-	@Autowired
-	private PreisRepository pr;
-
 	@RequestMapping(value = "/listAlleAktien", method = RequestMethod.GET)
 	public ResponseEntity<List<Aktienhandel>> getAktien() {
 		List<Aktienhandel> aktien = aktienRepository.findAll();
