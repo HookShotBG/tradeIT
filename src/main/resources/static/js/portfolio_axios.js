@@ -73,8 +73,9 @@ new Vue({
                     this.rate = currentPreis;
                     this.pl = this.calculateProfitLoss(currentPreis, this.overview_json.preis);
                     this.plp = this.calculations(currentPreis, this.overview_json.preis);
-                })
-            })
+                });
+            });
+
         },
         addPrice(){
             const newPreis = Math.floor((Math.random() * 100) + 1);
@@ -89,7 +90,6 @@ new Vue({
                 .get('/stockX')
                 .then((response) => {
                     this.resultSet = response.data;
-
 
                     this.resultSet[1].preis.sort(compare);
 
