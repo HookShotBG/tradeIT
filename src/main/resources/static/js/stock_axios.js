@@ -31,7 +31,7 @@ new Vue({
             if(priceChange >= 0){
                 priceChange = '+' + priceChange;
             }else {
-                priceChange = '-' + priceChange;
+                priceChange = priceChange;
             }
             return priceChange;
         }

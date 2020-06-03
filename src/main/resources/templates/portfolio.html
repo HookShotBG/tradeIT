@@ -52,27 +52,27 @@
             <table>
               <tr>
                 <td width="90%">Rate:</td>
-                <td>{{overview_json.currentPreis}}</td>
+                <td>{{rate}}</td>
               </tr>
               <tr>
                 <td width="90%">My Investment:</td>
-                <td>{{overview_json.invested}}</td>
+                <td>{{inv}}</td>
               </tr>
               <tr>
                 <td width="90%">Invested at:</td>
-                <td>{{overview_json.preis}}</td>
+                <td>{{invat}}</td>
               </tr>
               <tr>
                 <td width="90%">Units:</td>
-                <td>{{overview_json.units}}</td>
+                <td>{{uni}}</td>
               </tr>
               <tr>
                 <td width="90%">Profit/Loss:</td>
-                <td> {{calculateProfitLoss(overview_json.currentPreis, overview_json.preis, overview_json.units)}}</td>
+                <td> {{pl}}</td>
               </tr>
               <tr>
                 <td width="90%">Profit/Loss %:</td>
-                <td> {{calculateProfitLossPerc(overview_json.currentPreis, overview_json.preis)}}</td>
+                <td>{{plp}}%</td>
               </tr>
             </table>
             <br>
@@ -81,7 +81,7 @@
                 <button type="button" class="buyButton" data-toggle="modal" data-target="#detailModal">Details</button>
               </div>
               <div id="staticPreis" class="col-md-6">
-                <button type="button" class="sellButton" v-on:click="something">Add Preis</button>
+                <button type="button" class="sellButton" v-on:click="createNewPreis">Add Preis</button>
               </div>
             </div>
             <br>

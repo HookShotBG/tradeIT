@@ -6,11 +6,20 @@ new Vue({
         classes: {
             isLoss: false,
             isProfit: false
-        }
+        },
+        resultSet: null,
+        chart: null,
+        rate: null,
+        pl: null,
+        plp: null,
+        inv: null,
+        uni: null,
+        invat: null
     },
     mounted: function () {
         this.getPortfolioData();
         this.getOverviewData();
+        this.drawChart();
     },
     methods: {
         getPortfolioData: function(){
@@ -19,11 +28,18 @@ new Vue({
                 .then(response => (this.json = response.data));
         },
         getOverviewData: function(){
-          axios.get('/findSingleTrade/2').then(response => (this.overview_json = response.data));
+          axios.get('/findSingleTrade/2').then((response) => {
+              this.overview_json = response.data;
+              this.rate = this.overview_json.currentPreis;
+              this.inv=this.overview_json.invested;
+              this.invat=this.overview_json.preis;
+              this.uni=this.overview_json.units;
+              this.pl = this.calculateProfitLoss(this.overview_json.currentPreis, this.overview_json.preis);
+              this.plp = this.calculations(this.overview_json.currentPreis, this.overview_json.preis);
+          });
         },
-
-        calculateProfitLoss: function(currentPreis, investedPreis, units){
-            pl = (currentPreis - investedPreis) * units
+        calculateProfitLoss: function(currentPreis, investedPreis){
+            var pl =  currentPreis - investedPreis;
             pl = Math.round((pl + Number.EPSILON) * 100) / 100
             if(pl >= 0){
                 pl = '+' + pl;
@@ -35,23 +51,7 @@ new Vue({
             }
             return pl
         },
-        calculateProfitLossPerc: function(currentPreis, investedPreis){
-            var pl = currentPreis*100/investedPreis-100;
-            pl = Math.round((pl + Number.EPSILON) * 100) / 100
-            if(pl >= 0){
-                pl = '+' + pl + "%";
-                this.classes.isProfit = false;
-                this.classes.isLoss= true;
-            }else {
-                this.classes.isProfit = true;
-                this.classes.isLoss = false;
-            }
-            return pl
-        },
-
         calculations: function (firstValue, secondValue) {
-            console.log(firstValue);
-            console.log(secondValue);
             var priceChange = firstValue*100/secondValue-100;
             priceChange = Math.round((priceChange + Number.EPSILON) * 100) / 100
             if(priceChange >= 0){
@@ -64,26 +64,92 @@ new Vue({
             }
             return priceChange;
         },
-        createNewPreis : async function (event){
+        createNewPreis : function (){
+            this.addPrice().then((result) =>{
+                this.latestPrice().then((used) => {
+                    this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis);
+                    this.drawChart();
+                    const currentPreis = this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis;
+                    this.rate = currentPreis;
+                    this.pl = this.calculateProfitLoss(currentPreis, this.overview_json.preis);
+                    this.plp = this.calculations(currentPreis, this.overview_json.preis);
+                })
+            })
+        },
+        addPrice(){
             const newPreis = Math.floor((Math.random() * 100) + 1);
             const postRequest = 'http://localhost:8080/preis/' + newPreis;
-            axios.post(postRequest);
-            await axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data))).resolve(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
-
-
-
-            //this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis);
-
+            return axios.post(postRequest);
         },
-        something() {
-            return new Promise((resolve) => {
-                resolve(axios.get('/preis/latestPreis')).then(response => (this.json[this.json.length-1].preis.push(response.data))).then(this.calculations(this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-1].preis, this.json[this.json.length-1].preis[this.json[this.json.length-1].preis.length-2].preis));
-            });
+        latestPrice (){
+            return axios.get('/preis/latestPreis').then(response => (this.json[this.json.length-1].preis.push(response.data)));
         },
-        anotherMethod() {
-            this.something('blah').then((data) => {
-                this.foo = data;
-            });
+        drawChart(){
+            axios
+                .get('/stockX')
+                .then((response) => {
+                    this.resultSet = response.data;
+
+
+                    this.resultSet[1].preis.sort(compare);
+
+                    function compare(a, b) {
+                        var date1 = a.idPreis;
+                        var date2 = b.idPreis;
+                        var comparison = 0;
+                        if (date1 > date2) {
+                            comparison = 1;
+                        } else if (date1 < date2) {
+                            comparison = -1;
+                        }
+                        return comparison;
+                    }
+
+                    var xf = [];
+                    this.resultSet[1].preis.forEach((value, key) => {
+                        var ff = new Date(value.valid_until);
+                        var t = {
+                            x: ff,
+                            y:value.preis,
+                            indexLabel: "", markerType: "circle",  markerColor: "#6B8E23"
+                        };
+
+                        if(key > 0){
+                            if(value.preis < this.resultSet[1].preis[key-1].preis){
+                                t.indexLabel = "";
+                                t.markerType = "circle";
+                                t.markerColor = "tomato";
+                            }
+                        }
+                        xf.push(t);
+                    })
+                    this.chart = new CanvasJS.Chart("share_chartContainer", {
+                        theme: "light1",
+                        animationEnabled: true,
+                        title:{
+                            text: this.resultSet[1].name
+                        },
+                        axisX: {
+                            interval: 1,
+                            intervalType: "day",
+                            valueFormatString: "DD"
+                        },
+                        axisY:{
+                            title: "Price (in CHF)",
+                            valueFormatString: "$#0"
+                        },
+                        data: [{
+                            type: "line",
+                            markerSize: 12,
+                            xValueFormatString: "MMM, YYYY",
+                            yValueFormatString: "$###.#",
+                            dataPoints: xf
+                        }]
+                    });
+                    this.chart.render();
+
+                });
         }
     }
+
 });

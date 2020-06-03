@@ -17,15 +17,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .cors().and()
-                .csrf().disable();/*.
-                //TODO
-                /*
-                //hier ist der fehler -> wahrscheinlich wird role nicht mitgegeben (mit der deaktivierung von csrf und cors funktionierts
+                .csrf().disable().
+                //hier auskommentieren um CURL statements aus rest services zu implementieren (spring boot security verhindert das ausführen)
                 authorizeRequests()
                 .antMatchers("/*").hasRole("boss")
                 .anyRequest().authenticated()
                 .and()
-                .formLogin();*/
+                .formLogin();
     }
 
     @Override
