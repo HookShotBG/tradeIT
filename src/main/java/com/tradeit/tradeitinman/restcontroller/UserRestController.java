@@ -41,6 +41,7 @@ public class UserRestController {
             user.setIdentitaetskartennr(newUser.getIdentitaetskartennr());
             user.setVorname(newUser.getVorname());
             user.setZahlungsinformation(newUser.getZahlungsinformation());
+            user.setAdresse(newUser.getAdresse());
             return userRepository.save(user);
         }).orElseGet(() -> {
             //if user was not altered, save new user
