@@ -47,6 +47,8 @@ public class Dataloader {
 
         Aktie aktie = new Aktie("Microsoft", 10002, "MSFT", "CHF", b, s, a, pl, "CH5949181045");
 
+
+
         String str="2020-03-31";
         Date sff=Date.valueOf(str);//converting string into sql date
 
@@ -209,10 +211,19 @@ public class Dataloader {
 
         akr.save(aktie);
 
-
+        List<User> ul = new ArrayList<>();
         User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+        User xxx = new User("some", "one", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+        ul.add(u);
+        ul.add(xxx);
+        //u und xxx leben am selben ort
+        List<Adresse> adr = new ArrayList<>();
+        Adresse add = new Adresse("x-strasse","8000","Zürich", ul);
 
-        Adresse add = new Adresse("x-strasse","8000","Zürich", u);
+        adr.add(add);
+
+        u.setAdresse(adr);
+
 
         str="2020-04-16";
         sff=Date.valueOf(str);//converting string into sql date
@@ -397,7 +408,18 @@ public class Dataloader {
 
         akr.save(aktie);
 
-        User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+        List<User> ul = new ArrayList<>();
+        User u = new User("daniel", "nachoman", "CH10931X0", 10000, new Date(2001100800), "Maestro", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+        User xxx = new User("hans", "mueller", "sadfx**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+        ul.add(u);
+        ul.add(xxx);
+        //u und xxx leben am selben ort
+        List<Adresse> adr = new ArrayList<>();
+        Adresse add = new Adresse("Boulevard 66","8000","Zürich", ul);
+
+        adr.add(add);
+
+        u.setAdresse(adr);
 
         str="2020-04-16";
         sff=Date.valueOf(str);//converting string into sql date

@@ -1,5 +1,7 @@
 package com.tradeit.tradeitinman.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -13,7 +15,8 @@ public class Adresse {
 	private String postleitzahl;
 	private String ort;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<User> users;
 
 	public Adresse() {

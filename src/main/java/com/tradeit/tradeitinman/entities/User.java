@@ -22,7 +22,7 @@ public class User {
 	@OneToMany
 	private List<Aktienhandel> aktienhandel;
 
-	@ManyToMany
+	@ManyToMany(cascade = CascadeType.ALL)
 	private List<Adresse> adresse;
 
 	public User() {
