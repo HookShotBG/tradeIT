@@ -1,5 +1,6 @@
 package com.tradeit.tradeitinman;
 import com.tradeit.tradeitinman.restcontroller.UserRestController;
+import org.hamcrest.CoreMatchers;
 import org.junit.jupiter.api.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -136,7 +137,7 @@ public class SmokeTesting {
                 .characterEncoding("UTF-8");
         this.mockMvc.perform(builder).andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(MockMvcResultMatchers.content()
-                        .string("[{\"titel\":\"Microsoft\",\"user\":\"dani el\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":123.78,\"units\":5,\"current\":56.22,\"currentPreis\":180.0,\"calcChange\":\"45.42%\"},{\"titel\":\"AMD\",\"user\":\"dani el\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":42.49,\"units\":5,\"current\":-25.98,\"currentPreis\":16.51,\"calcChange\":\"-61.14%\"}]"))
+                        .string("[{\"titel\":\"Microsoft\",\"user\":\"dani el\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":123.78,\"units\":5,\"current\":56.22,\"currentPreis\":180.0,\"calcChange\":\"45.42%\"},{\"titel\":\"AMD\",\"user\":\"daniel nachoman\",\"datum\":\"2020-04-15T22:00:00.000+00:00\",\"invested\":1000,\"take_profit\":125,\"stop_loss\":25,\"preis\":42.49,\"units\":5,\"current\":-25.98,\"currentPreis\":16.51,\"calcChange\":\"-61.14%\"}]"))
                 .andDo(MockMvcResultHandlers.print());
 
     }
