@@ -23,6 +23,9 @@ public class User {
 	@OneToMany
 	private List<Aktienhandel> aktienhandel;
 
+	@ManyToMany
+	private List<Adresse> adresse;
+
 	public User() {
 	}
 
@@ -96,4 +99,7 @@ public class User {
 	public void setAktienhandel(List<Aktienhandel> aktienhandel) {
 		this.aktienhandel = aktienhandel;
 	}
+
+	public List<Adresse> getAdresse() {return adresse;	}
+	public void setAdresse(List<Adresse> adresse) {this.adresse = adresse;}
 }
