@@ -64,6 +64,66 @@ new Vue({
             }
             return priceChange;
         },
+        // der add preis button ist ein bisschen mächtiger als
+        //er scheint -> grundsätzlich könnte man meinen
+        //der fügt einen preis einer liste hinzu und gut ist
+        //was diese funktion eigentlihc macht ist mehr:
+
+        //bevor wir auf die funktion eingehen, einen kurzen input
+        //wie es aufgebaut ist
+        //die daten für das portfolio werden vorwiegend aus der
+        //json variable geholt, welche in mount initialisiert wird
+        //die daten werden anhand eines axios get requests
+        //geholt
+
+        //zur funktion:
+
+        //die funktion: erstellt eine neue js Promise welche in addPrice
+        //ausgeführt wird
+        //die ausführung besteht aus der generation aus einem neuen
+        //preis mit math random
+        //dieser wird nachfolgend mit einem post call in der db
+        //gespeichert -> auf der url http://localhost:8080/preis/XX
+        //befindet sich ein requestmapping von einem restcontroller
+        //nachdem die erste promise erfüllt ist, wird eine
+        //zweite promise ausgeührt
+        //bei dieser handelt es sich um das fetchen vom aktuellen
+        //preis. folglich wird erneut ein axios command ausgeführt
+        //dieses mal aber mit einem get request und nicht post
+        //die neuen daten überschreiben, sobald die promise erfüllt ist
+        //this.json mti den aktuellen werten.
+
+        //diese werte müssen auch in der view angepasst werden, daher werden sobald die fetch
+        //promise fulfilled ist die neuen preise berechnet werden
+        //
+        //bei der ersten methode calculations wird die preisdifferenz pro tag berechnet
+        // einfacherheitshalber wird nur der letzte aktienhandel angepasst
+        //da es sich bei der json variable um ein array an objekten handelt,
+        //wird hier das letzte, wird mit diesem befehl das letzte element im array geholt
+        //davon soll der preis genommen werden. da es sich beim preis ebenfalls um eine liste
+        //handelt, muss auch bei diesem das letzte element genommen werden, als auch
+        //das zweitletzte, um die tagesveränderung zu berechnen
+        //
+        //die drawChart methode muss aufgrund des neuen elements in this.json erneut
+        //aufgerufen werden, um das chart neu zu erstellen
+        //denn die daten werden ebenfalls vom json geladen, und dieses hat sich aktualisiert
+        //
+        //die variable currentPreis wurde der lesbarkeitshalber erstellt, dabei handelt es
+        //sich um den aktuellen preis, welcher neu hinzugefügt wurde
+        //da dieser grundsätzlich in solch einer applikation nciht intern generiert wird
+        //haben wir diesen nicht als globale variable definiert sondern holen ihn über
+        //das json
+        //
+        //nachdem werden die einzelnen variablen, welche auch im portfolio referenziert
+        //werden überschrieben und angepasst
+        //
+        //dabei handelt es sich bei calculate ProfitLoss um die berechnung vom aktuellen
+        //wert der aktie zum einstandspreis des benutzers -> was wie marc gezeigt hat
+        //entweder positiv oder negativ ist
+        //
+        //zum schluss wird calculations erneut ausgeführt, dies mal aber im zusammenhang
+        //mit dem aktuellen preis und einstandspreis und nicht um die tagesveränderung
+        //zu berechnen
         createNewPreis : function (){
             this.addPrice().then((result) =>{
                 this.latestPrice().then((used) => {
