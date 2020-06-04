@@ -15,8 +15,7 @@ public class User {
 	private String identitaetskartennr;
 	private double guthaben;
 	private Date geburtsdatum;
-	//do cardinality
-	private String idAdresse;
+
 	//do cardinality
 	private String zahlungsinformation;
 
@@ -30,15 +29,16 @@ public class User {
 	}
 
 
-	public User(String vorname, String nachname, String identitaetskartennr, int guthaben, Date geburtsdatum, String idAdresse, String zahlungsinformation, List<Aktienhandel> aktienhandel) {
+
+	public User(String vorname, String nachname, String identitaetskartennr, int guthaben, Date geburtsdatum, String zahlungsinformation, List<Aktienhandel> aktienhandel, List<Adresse> adresse) {
 		this.vorname = vorname;
 		this.nachname = nachname;
 		this.identitaetskartennr = identitaetskartennr;
 		this.guthaben = guthaben;
 		this.geburtsdatum = geburtsdatum;
-		this.idAdresse = idAdresse;
 		this.zahlungsinformation = zahlungsinformation;
 		this.aktienhandel = aktienhandel;
+		this.adresse = adresse;
 	}
 
 	public Long getIdUser() {
@@ -76,12 +76,6 @@ public class User {
 	}
 	public void setGeburtsdatum(Date geburtsdatum) {
 		this.geburtsdatum = geburtsdatum;
-	}
-	public String getIdAdresse() {
-		return idAdresse;
-	}
-	public void setIdAdresse(String idAdresse) {
-		this.idAdresse = idAdresse;
 	}
 
 	public String getZahlungsinformation() {

@@ -38,7 +38,6 @@ public class UserRestController {
             user.setAktienhandel(newUser.getAktienhandel());
             user.setGeburtsdatum(newUser.getGeburtsdatum());
             user.setGuthaben(newUser.getGuthaben());
-            user.setIdAdresse(newUser.getIdAdresse());
             user.setIdentitaetskartennr(newUser.getIdentitaetskartennr());
             user.setVorname(newUser.getVorname());
             user.setZahlungsinformation(newUser.getZahlungsinformation());

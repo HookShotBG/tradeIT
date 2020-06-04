@@ -11,12 +11,19 @@ public class Adresse {
 	private Long idAdresse;
 	private String addresse;
 	private String postleitzahl;
-	private String Ort;
+	private String ort;
 
 	@ManyToMany
 	private List<User> users;
 
 	public Adresse() {
+	}
+
+	public Adresse(String adresse, String postleitzahl, String ort, List<User> users) {
+		this.addresse = adresse;
+		this.postleitzahl = postleitzahl;
+		this.ort = ort;
+		this.users = users;
 	}
 
 	public Long getIdAdresse() {return idAdresse;	}
@@ -31,9 +38,9 @@ public class Adresse {
 
 	public void setPostleitzahl(String postleitzahl) {this.postleitzahl = postleitzahl;	}
 
-	public String getOrt() {return Ort;	}
+	public String getOrt() {return ort;	}
 
-	public void setOrt(String ort) {Ort = ort;	}
+	public void setOrt(String ort) {ort = ort;	}
 
 	public List<User> getUsers() {return users;	}
 
