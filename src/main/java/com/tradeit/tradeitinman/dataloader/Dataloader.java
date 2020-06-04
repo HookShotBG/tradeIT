@@ -209,7 +209,10 @@ public class Dataloader {
 
         akr.save(aktie);
 
+
         User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
+
+        Adresse add = new Adresse("x-strasse","8000","Zürich", u);
 
         str="2020-04-16";
         sff=Date.valueOf(str);//converting string into sql date
