@@ -209,7 +209,7 @@ public class Dataloader {
 
         akr.save(aktie);
 
-        User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "Dickinson", "sadfZahl", new ArrayList<Aktienhandel>());
+        User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
 
         str="2020-04-16";
         sff=Date.valueOf(str);//converting string into sql date
@@ -394,7 +394,7 @@ public class Dataloader {
 
         akr.save(aktie);
 
-        User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "Dickinson", "sadfZahl", new ArrayList<Aktienhandel>());
+        User u = new User("dani", "el", "asdfasdf**", 10000, new Date(2001100800), "sadfZahl", new ArrayList<Aktienhandel>(), new ArrayList<Adresse>());
 
         str="2020-04-16";
         sff=Date.valueOf(str);//converting string into sql date
